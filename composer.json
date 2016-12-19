@@ -1,0 +1,25 @@
+{
+    "name": "subsguru/sepa-payment-plugin",
+    "description": "SEPA payment plugin for SubsGuru",
+    "type": "cakephp-plugin",
+    "require": {
+        "php": ">=5.5.9",
+        "cakephp/cakephp": ">=3.3.2 <4.0.0",
+        "digitick/sepa-xml" : "1.1.*",
+        "globalcitizen/php-iban": "2.5.*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "SubsGuru\\SEPA\\": "src\\"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "SubsGuru\\Test\\": "tests",
+            "Cake\\Test\\": "./vendor/cakephp/cakephp/tests"
+        }
+    }
+}

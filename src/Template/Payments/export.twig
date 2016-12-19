@@ -1,0 +1,126 @@
+{% import "../Macros/payments.twig" as paymentsMacros %}
+
+{{ _view.assign('title', __d('payment-sepa', 'SEPA payments export')) }}
+{{ _view.assign('page-title', __d('payment-sepa', 'Exporting SEPA payments')) }}
+
+{{ Html.addCrumb(__d('payment-sepa', 'Payments'), referer) }}
+{{ Html.addCrumb(__d('payment-sepa', 'Exporting SEPA payments')) }}
+
+{{ Html.css('export.css', { block: true })|raw }}
+{{ Html.css('export.css', { block: true })|raw }}
+{{ Html.script('export.js', { block: true })|raw }}
+
+{% set paymentsCount = payments.count() %}
+{% set ignoredCount = ignored.count() %}
+{% set paymentsCount = payments.count() %}
+
+<div class="row">
+    <div class="col-xs-12">
+        {% if ignored.count() > 0 %}
+            <div class="alert alert-warning">
+                <i class="fa fa-warning"></i>
+                {{ __d('payment-sepa', "{0} payments are ignored in your selection because they are not SEPA payments", ignoredCount) }}.
+            </div>
+        {% endif %}
+
+        <div class="title">
+            <h4>{{ __d('sepa-payment', "You have selected {0} SEPA payment{1}", paymentsCount, paymentsCount > 1 ? 's' : '') }}.</h4>
+            <small>
+                {{ __d('payment-sepa', "Please check export types in the list then proceed to your export") }}.<br/>
+                {{ __d('payment-sepa', "Exported file will contains all payments listed below")|raw }} :
+            </small>
+        </div>
+
+        {{ Form.create(null, { 'id':'sepa-export' })|raw }}
+        {{ Form.hidden('type', { 'id':'type' })|raw }}
+        {{ Form.unlockField('type') }}
+
+        <div class="box box-default">
+            <div class="box-body table-responsive no-padding">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th class="customer">{{ __d('payments', "Customer") }}</th>
+                            <th class="invoice-ref">{{ __d('payments', "Invoice") }}</th>
+                            <th class="amount">{{ __d('payments', "Amount") }}</th>
+                            <th class="is-first">{{ __d('payments', "Is first payment") }}</th>
+                            <th class="type">{{ __('Type') }}</th>
+                            <th class="status">{{ __('Status') }}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for payment in payments %}
+                            {% set isFirst = (paymentsCounters|default is empty) or (paymentsCounters[payment.payment_mean_id] < 1) %}
+                            {% set isReady = payment.is(constant('SubsGuru\\SEPA\\Payments\\Gateway\\SEPAPaymentGateway::STATUS_READY')) %}
+                            <tr>
+                                <td class="customer">
+                                    <a href="{{ Url.build({ 'plugin':null, 'controller':'Customers', 'action':'view', 0:payment.payment_mean.customer.id }) }}" class="trigger-tipsy tipsy-s" title=" {{ payment.payment_mean.customer.org_legal_name }} - Click to view" target="_blank">
+                                        {{ payment.payment_mean.customer.org_business_name }}
+                                    </a>
+                                </td>
+                                <td class="invoice-ref">
+                                    <span class="text-muted">-</span>
+                                </td>
+                                <td class="amount">
+                                    <a href="{{ Url.build({ 'plugin':null, 'controller':'Payments', 'action':'view', 0:payment.id }) }}" class="trigger-tipsy tipsy-s" title="Click to view payment" target="_blank">
+                                        {{ money(payment.getAmount(), payment.currency) }}
+                                    </a>
+                                </td>
+                                <td class="is-first">
+                                    {% if payment.get('sepa_type') == debitsTypes.first %}
+                                        <span class="text-red text-bold">{{ __('Yes') }}</span>
+                                    {% else %}
+                                        {{ __('No') }}
+                                    {% endif %}
+                                </td>
+                                <td class="type">
+                                    {{ Form.select('type-' ~ payment.id, {
+                                        'AUTO': 'auto (' ~ debits[payment.get('sepa_type')] ~ ')',
+                                        'Manual': debits
+                                    },{
+                                        'default': 'auto',
+                                        'disabled': (not isReady and payment.isSuccessful() != true)
+                                    })|raw }}
+                                </td>
+                                <td class="status">
+                                    {% if isReady %}
+                                        <i class="fa fa-check-circle text-green"></i>
+                                        {{ __d('payment-sepa', 'Ready') }}
+                                    {% elseif payment.isSuccessful() %}
+                                        <i class="fa fa-warning text-orange"></i>
+                                        <span class="trigger-tipsy tipsy-s" title="{{ __d('payment-sepa', "Exported on {0}", payment.payment_dt|default('unknown')) }}">
+                                            {{ __d('payment-sepa', 'Already exported !') }}
+                                        </span>
+                                    {% else %}
+                                        <i class="fa fa-times-circle text-red"></i>
+                                        {{ __d('payment-sepa', 'Payment not ready') }}
+                                    {% endif %}
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="btn-group">
+            <button type="submit" class="btn btn-primary btn-big" id="do-export">
+                <i class="fa fa-file"></i>
+                {{ __d('payment-sepa', "Export all") }}
+            </button>
+            <button type="button" class="btn btn-primary dropdown-toggle btn-big" data-toggle="dropdown" aria-expanded="false">
+                <span class="caret"></span>
+                <span class="sr-only">{{ __d('payment-sepa', "Toggle Dropdown") }}</span>
+            </button>
+            <ul class="dropdown-menu" role="menu">
+                <li><a href="javascript:void(0)" id="export-frst">{{ __d('payment-sepa', "Export {0} only", constant('Digitick\\Sepa\\PaymentInformation::S_FIRST')) }}</a></li>
+                <li><a href="#" id="export-rcur">{{ __d('payment-sepa', "Export {0} only", constant('Digitick\\Sepa\\PaymentInformation::S_RECURRING')) }}</a></li>
+            </ul>
+        </div>
+        <a href="{{ referer }}" class="cancel">
+            Cancel
+        </a>
+
+        {{ Form.end()|raw }}
+    </div>
+</div>
