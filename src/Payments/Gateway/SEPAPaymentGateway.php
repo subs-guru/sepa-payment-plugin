@@ -207,6 +207,7 @@ class SEPAPaymentGateway extends AbstractPaymentGateway
                 'field' => [
                     'label' => __d('payment-sepa', 'Debitor account IBAN country code'),
                     'type' => 'text',
+                    'placeholder' => 'ex: FR',
                     'required' => true
                 ],
                 'validators' => [
@@ -220,6 +221,7 @@ class SEPAPaymentGateway extends AbstractPaymentGateway
                 'field' => [
                     'label' => __d('payment-sepa', 'Debitor account IBAN key'),
                     'type' => 'text',
+                    'placeholder' => 'ex: 76',
                     'required' => true
                 ],
                 'validators' => [
