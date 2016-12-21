@@ -26,7 +26,7 @@ class SEPAPaymentGateway extends AbstractPaymentGateway
     /**
      * {@inheritDoc}
      */
-    public function getName()
+    public static function getName()
     {
         return 'sepa';
     }

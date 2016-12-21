@@ -5,4 +5,4 @@ use App\Payments\PaymentGatewayRepository;
 //
 // Registering SEPA payment handler
 //
-PaymentGatewayRepository::addHandler('SubsGuru\\SEPA\\Payments\\Gateway\\SEPAPaymentGateway');
+PaymentGatewayRepository::add('SubsGuru\\SEPA\\Payments\\Gateway\\SEPAPaymentGateway');
