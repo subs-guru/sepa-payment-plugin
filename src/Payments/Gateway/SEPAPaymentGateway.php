@@ -326,8 +326,9 @@ class SEPAPaymentGateway extends AbstractPaymentGateway
     /**
      * {@inheritDoc}
      */
-    public function onCreate(PaymentMean $paymentMean, array $form)
+    public function onCreate(PaymentMean $paymentMean, array $form, array $options = [])
     {
+        $paymentMean->formToParameters($form);
     }
 
     /**
