@@ -1,10 +1,10 @@
 {% import "../Macros/payments.twig" as paymentsMacros %}
 
-{{ _view.assign('title', __d('payment-sepa', 'SEPA payments export')) }}
-{{ _view.assign('page-title', __d('payment-sepa', 'Exporting SEPA payments')) }}
+{{ _view.assign('title', __d('SubsGuru/SEPA', 'SEPA payments export')) }}
+{{ _view.assign('page-title', __d('SubsGuru/SEPA', 'Exporting SEPA payments')) }}
 
-{{ Html.addCrumb(__d('payment-sepa', 'Payments'), referer) }}
-{{ Html.addCrumb(__d('payment-sepa', 'Exporting SEPA payments')) }}
+{{ Html.addCrumb(__d('SubsGuru/SEPA', 'Payments'), referer) }}
+{{ Html.addCrumb(__d('SubsGuru/SEPA', 'Exporting SEPA payments')) }}
 
 {{ Html.css('export.css', { block: true })|raw }}
 {{ Html.css('export.css', { block: true })|raw }}
@@ -19,15 +19,15 @@
         {% if ignored.count() > 0 %}
             <div class="alert alert-warning">
                 <i class="fa fa-warning"></i>
-                {{ __d('payment-sepa', "{0} payments are ignored in your selection because they are not SEPA payments", ignoredCount) }}.
+                {{ __d('SubsGuru/SEPA', "{0} payments are ignored in your selection because they are not SEPA payments", ignoredCount) }}.
             </div>
         {% endif %}
 
         <div class="title">
-            <h4>{{ __d('sepa-payment', "You have selected {0} SEPA payment{1}", paymentsCount, paymentsCount > 1 ? 's' : '') }}.</h4>
+            <h4>{{ __d('SubsGuru/SEPA', "You have selected {0} SEPA payment{1}", paymentsCount, paymentsCount > 1 ? 's' : '') }}.</h4>
             <small>
-                {{ __d('payment-sepa', "Please check export types in the list then proceed to your export") }}.<br/>
-                {{ __d('payment-sepa', "Exported file will contains all payments listed below")|raw }} :
+                {{ __d('SubsGuru/SEPA', "Please check export types in the list then proceed to your export") }}.<br/>
+                {{ __d('SubsGuru/SEPA', "Exported file will contains all payments listed below")|raw }} :
             </small>
         </div>
 
@@ -40,12 +40,12 @@
                 <table class="table table-hover">
                     <thead>
                         <tr>
-                            <th class="customer">{{ __d('payments', "Customer") }}</th>
-                            <th class="invoice-ref">{{ __d('payments', "Invoice") }}</th>
-                            <th class="amount">{{ __d('payments', "Amount") }}</th>
-                            <th class="is-first">{{ __d('payments', "Is first payment") }}</th>
-                            <th class="type">{{ __('Type') }}</th>
-                            <th class="status">{{ __('Status') }}</th>
+                            <th class="customer">{{ __d('SubsGuru/SEPA', "Customer") }}</th>
+                            <th class="invoice-ref">{{ __d('SubsGuru/SEPA', "Invoice") }}</th>
+                            <th class="amount">{{ __d('SubsGuru/SEPA', "Amount") }}</th>
+                            <th class="is-first">{{ __d('SubsGuru/SEPA', "Is first payment") }}</th>
+                            <th class="type">{{ __d('SubsGuru/SEPA', "Type") }}</th>
+                            <th class="status">{{ __d('SubsGuru/SEPA', "Status") }}</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -85,15 +85,15 @@
                                 <td class="status">
                                     {% if isReady %}
                                         <i class="fa fa-check-circle text-green"></i>
-                                        {{ __d('payment-sepa', 'Ready') }}
+                                        {{ __d('SubsGuru/SEPA', 'Ready') }}
                                     {% elseif payment.isSuccessful() %}
                                         <i class="fa fa-warning text-orange"></i>
-                                        <span class="trigger-tipsy tipsy-s" title="{{ __d('payment-sepa', "Exported on {0}", payment.payment_dt|default('unknown')) }}">
-                                            {{ __d('payment-sepa', 'Already exported !') }}
+                                        <span class="trigger-tipsy tipsy-s" title="{{ __d('SubsGuru/SEPA', "Exported on {0}", payment.payment_dt|default('unknown')) }}">
+                                            {{ __d('SubsGuru/SEPA', 'Already exported !') }}
                                         </span>
                                     {% else %}
                                         <i class="fa fa-times-circle text-red"></i>
-                                        {{ __d('payment-sepa', 'Payment not ready') }}
+                                        {{ __d('SubsGuru/SEPA', 'Payment not ready') }}
                                     {% endif %}
                                 </td>
                             </tr>
@@ -106,15 +106,15 @@
         <div class="btn-group">
             <button type="submit" class="btn btn-primary btn-big" id="do-export">
                 <i class="fa fa-file"></i>
-                {{ __d('payment-sepa', "Export all") }}
+                {{ __d('SubsGuru/SEPA', "Export all") }}
             </button>
             <button type="button" class="btn btn-primary dropdown-toggle btn-big" data-toggle="dropdown" aria-expanded="false">
                 <span class="caret"></span>
-                <span class="sr-only">{{ __d('payment-sepa', "Toggle Dropdown") }}</span>
+                <span class="sr-only">{{ __d('SubsGuru/SEPA', "Toggle Dropdown") }}</span>
             </button>
             <ul class="dropdown-menu" role="menu">
-                <li><a href="javascript:void(0)" id="export-frst">{{ __d('payment-sepa', "Export {0} only", constant('Digitick\\Sepa\\PaymentInformation::S_FIRST')) }}</a></li>
-                <li><a href="#" id="export-rcur">{{ __d('payment-sepa', "Export {0} only", constant('Digitick\\Sepa\\PaymentInformation::S_RECURRING')) }}</a></li>
+                <li><a href="javascript:void(0)" id="export-frst">{{ __d('SubsGuru/SEPA', "Export {0} only", constant('Digitick\\Sepa\\PaymentInformation::S_FIRST')) }}</a></li>
+                <li><a href="#" id="export-rcur">{{ __d('SubsGuru/SEPA', "Export {0} only", constant('Digitick\\Sepa\\PaymentInformation::S_RECURRING')) }}</a></li>
             </ul>
         </div>
         <a href="{{ referer }}" class="cancel">

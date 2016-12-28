@@ -39,7 +39,6 @@ class PaymentsController extends AbstractPaymentGatewayController
             $payment->set('sepa_type', $this->detectSepaType($payment, $paymentsCounters));
         }
 
-        $this->set('payments', $payments);
         $this->set('ignored', $ignored);
         $this->set('payments', $filtered);
         $this->set('paymentsCounters', $paymentsCounters);
@@ -129,7 +128,7 @@ class PaymentsController extends AbstractPaymentGatewayController
             $this->createTempDir($file);
 
             if (!isset($sepaXml[$type])) {
-                $this->Flash->warning(__d('payments', "No document matched selected type ({0}), nothing to export.", $type));
+                $this->Flash->warning(__d('SubsGuru/SEPA', "No document matched selected type ({0}), nothing to export.", $type));
                 return $this->redirect($this->referer());
             }
 
@@ -175,7 +174,7 @@ class PaymentsController extends AbstractPaymentGatewayController
 
                 $payment->updateStatus(
                     $this->getPaymentGateway()->getSuccessStatus(),
-                    __d('payment-sepa', "Exported into file `{0}`", basename($file)),
+                    __d('SubsGuru/SEPA', "Exported into file `{0}`", basename($file)),
                     ['filename' => basename($file)],
                     true
                 );

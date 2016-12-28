@@ -36,7 +36,7 @@ class SEPAPaymentGateway extends AbstractPaymentGateway
      */
     public function getPrettyName()
     {
-        return __d('payment-sepa', 'SEPA');
+        return __d('SubsGuru/SEPA', 'SEPA');
     }
 
     /**
@@ -44,7 +44,7 @@ class SEPAPaymentGateway extends AbstractPaymentGateway
      */
     public function getShortDescriptionText()
     {
-        return __d('payment-sepa', 'SEPA payment');
+        return __d('SubsGuru/SEPA', 'SEPA payment');
     }
 
     /**
@@ -53,14 +53,14 @@ class SEPAPaymentGateway extends AbstractPaymentGateway
     public function getPossibleStatuses()
     {
         return array_merge(parent::getPossibleStatuses(), [
-            $this->getSuccessStatus() => __d('payment-sepa', "Exported")
+            $this->getSuccessStatus() => __d('SubsGuru/SEPA', "Exported")
         ]);
     }
 
     public function getIntermediateStatuses()
     {
         return [
-            'ready' => __d('payment-sepa', "Waiting for export")
+            'ready' => __d('SubsGuru/SEPA', "Waiting for export")
         ];
     }
 
@@ -71,7 +71,7 @@ class SEPAPaymentGateway extends AbstractPaymentGateway
     {
         return [
             'export' => [
-                'title' => __d('sepa-payment', "Export SEPA files"),
+                'title' => __d('SubsGuru/SEPA', "Export SEPA files"),
                 'icon' => 'file',
                 'url' => Router::url([
                     'plugin' => 'SubsGuru/SEPA',
@@ -90,7 +90,7 @@ class SEPAPaymentGateway extends AbstractPaymentGateway
         return [
             'format' => [
                 'field' => [
-                    'label' => __d('payment-sepa', 'SEPA export format'),
+                    'label' => __d('SubsGuru/SEPA', 'SEPA export format'),
                     'type' => 'select',
                     'required' => true,
                     'options' => [
@@ -101,95 +101,95 @@ class SEPAPaymentGateway extends AbstractPaymentGateway
                 'validators' => [
                     'format' => [
                         'rule' => [$this, 'validatePAIN'],
-                        'message' => __d('sepa-payment', "IBAN format is incorrect")
+                        'message' => __d('SubsGuru/SEPA', "IBAN format is incorrect")
                     ]
                 ]
             ],
             'iban' => [
                 'field' => [
-                    'label' => __d('payment-sepa', 'Creditor account IBAN'),
+                    'label' => __d('SubsGuru/SEPA', 'Creditor account IBAN'),
                     'type' => 'text',
                     'required' => true
                 ],
                 'validators' => [
                     'format' => [
                         'rule' => [$this, 'validateIBAN'],
-                        'message' => __d('sepa-payment', "IBAN format is incorrect")
+                        'message' => __d('SubsGuru/SEPA', "IBAN format is incorrect")
                     ]
                 ]
             ],
             'bic' => [
                 'field' => [
-                    'label' => __d('payment-sepa', 'Creditor account BIC'),
+                    'label' => __d('SubsGuru/SEPA', 'Creditor account BIC'),
                     'type' => 'text',
                     'required' => true
                 ],
                 'validators' => [
                     'format' => [
                         'rule' => [$this, 'validateBIC'],
-                        'message' => __d('sepa-payment', "BIC format is incorrect")
+                        'message' => __d('SubsGuru/SEPA', "BIC format is incorrect")
                     ]
                 ]
             ],
             'ics' => [
                 'field' => [
-                    'label' => __d('payment-sepa', 'Agent ICS'),
+                    'label' => __d('SubsGuru/SEPA', 'Agent ICS'),
                     'type' => 'text',
                     'required' => true
                 ]
             ],
             'compagny' => [
                 'field' => [
-                    'label' => __d('payment-sepa', 'Compagny legal name'),
+                    'label' => __d('SubsGuru/SEPA', 'Compagny legal name'),
                     'type' => 'text',
                     'required' => true
                 ]
             ],
             'siret' => [
                 'field' => [
-                    'label' => __d('payment-sepa', 'Compagny SIRET'),
+                    'label' => __d('SubsGuru/SEPA', 'Compagny SIRET'),
                     'type' => 'text',
                     'required' => true
                 ]
             ],
             'tva' => [
                 'field' => [
-                    'label' => __d('payment-sepa', 'Creditor TVA code'),
+                    'label' => __d('SubsGuru/SEPA', 'Creditor TVA code'),
                     'type' => 'text',
                     'required' => true
                 ]
             ],
             'short_description' => [
                 'field' => [
-                    'label' => __d('payment-sepa', 'Compagny short description'),
+                    'label' => __d('SubsGuru/SEPA', 'Compagny short description'),
                     'type' => 'text',
                     'required' => true
                 ]
             ],
             'address' => [
                 'field' => [
-                    'label' => __d('payment-sepa', 'Creditor address'),
+                    'label' => __d('SubsGuru/SEPA', 'Creditor address'),
                     'type' => 'text',
                     'required' => true
                 ]
             ],
             'postalCode' => [
                 'field' => [
-                    'label' => __d('payment-sepa', 'Creditor postal code'),
+                    'label' => __d('SubsGuru/SEPA', 'Creditor postal code'),
                     'type' => 'text',
                     'required' => true
                 ]
             ],
             'city' => [
                 'field' => [
-                    'label' => __d('payment-sepa', 'Creditor city'),
+                    'label' => __d('SubsGuru/SEPA', 'Creditor city'),
                     'type' => 'text',
                     'required' => true
                 ]
             ],
             'country' => [
                 'field' => [
-                    'label' => __d('payment-sepa', 'Creditor country'),
+                    'label' => __d('SubsGuru/SEPA', 'Creditor country'),
                     'type' => 'text',
                     'required' => true
                 ]
@@ -205,7 +205,7 @@ class SEPAPaymentGateway extends AbstractPaymentGateway
         return [
             'iban_country' => [
                 'field' => [
-                    'label' => __d('payment-sepa', 'Debitor account IBAN country code'),
+                    'label' => __d('SubsGuru/SEPA', 'Debitor account IBAN country code'),
                     'type' => 'text',
                     'placeholder' => 'ex: FR',
                     'required' => true
@@ -213,13 +213,13 @@ class SEPAPaymentGateway extends AbstractPaymentGateway
                 'validators' => [
                     'length' => [
                         'rule' => ['lengthBetween', 2, 2],
-                        'message' => __d('payment-sepa', "Country code should be two characters (example: DE, FR)")
+                        'message' => __d('SubsGuru/SEPA', "Country code should be two characters (example: DE, FR)")
                     ]
                 ]
             ],
             'iban_key' => [
                 'field' => [
-                    'label' => __d('payment-sepa', 'Debitor account IBAN key'),
+                    'label' => __d('SubsGuru/SEPA', 'Debitor account IBAN key'),
                     'type' => 'text',
                     'placeholder' => 'ex: 76',
                     'required' => true
@@ -227,17 +227,17 @@ class SEPAPaymentGateway extends AbstractPaymentGateway
                 'validators' => [
                     'numeric' => [
                         'rule' => ['numeric'],
-                        'message' => __d('payment-sepa', "IBAN key should be a numerical value")
+                        'message' => __d('SubsGuru/SEPA', "IBAN key should be a numerical value")
                     ],
                     'length' => [
                         'rule' => ['lengthBetween', 2, 2],
-                        'message' => __d('payment-sepa', "IBAN key should be two digits")
+                        'message' => __d('SubsGuru/SEPA', "IBAN key should be two digits")
                     ]
                 ]
             ],
             'iban_code' => [
                 'field' => [
-                    'label' => __d('payment-sepa', 'Debitor account IBAN number'),
+                    'label' => __d('SubsGuru/SEPA', 'Debitor account IBAN number'),
                     'type' => 'text',
                     'required' => true
                 ],
@@ -245,14 +245,14 @@ class SEPAPaymentGateway extends AbstractPaymentGateway
             ],
             'bic' => [
                 'field' => [
-                    'label' => __d('payment-sepa', 'BIC'),
+                    'label' => __d('SubsGuru/SEPA', 'BIC'),
                     'type' => 'text',
                     'required' => true
                 ],
                 'validators' => [
                     'format' => [
                         'rule' => [$this, 'validateBIC'],
-                        'message' => __d('sepa-payment', "BIC format is incorrect")
+                        'message' => __d('SubsGuru/SEPA', "BIC format is incorrect")
                     ]
                 ]
             ]
