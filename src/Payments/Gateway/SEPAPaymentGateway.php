@@ -6,6 +6,7 @@ use App\Model\Entity\PaymentMean;
 use App\Model\Entity\PaymentMeanConfig;
 use App\Payments\AbstractPaymentGateway;
 use Cake\Routing\Router;
+use Digitick\Sepa\PaymentInformation;
 
 defined('SEPA_XML_FOLDER')?: define('SEPA_XML_FOLDER', ROOT . '/tmp/sepa');
 defined('SEPA_XML_FOLDER_UMASK')?: define('SEPA_XML_FOLDER_UMASK', 0775);
@@ -104,6 +105,20 @@ class SEPAPaymentGateway extends AbstractPaymentGateway
                         'message' => __d('SubsGuru/SEPA', "IBAN format is incorrect")
                     ]
                 ]
+            ],
+            'force_export_type' => [
+                'field' => [
+                    'label' => __d('SubsGuru/SEPA', 'Force export type'),
+                    'type' => 'select',
+                    'required' => true,
+                    'options' => [
+                        'AUTO' => __d('SubsGuru/SEPA', 'Automatic (not forced)'),
+                        PaymentInformation::S_RECURRING => 'recurring (forced)',
+                        PaymentInformation::S_FIRST => 'first (forced)'
+                    ],
+                    'default' => 'AUTO'
+                ],
+                'help' => __d('SubsGuru/SEPA', 'Use this setting to force default export type')
             ],
             'iban' => [
                 'field' => [

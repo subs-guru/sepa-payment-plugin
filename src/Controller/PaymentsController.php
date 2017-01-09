@@ -257,6 +257,12 @@ class PaymentsController extends AbstractPaymentGatewayController
     {
         static $firsts = array();
 
+        $gateway = $this->getPaymentGateway();
+
+        if (($forcedType = $gateway->getConfiguration()->getProperty('force_export_type')) != 'AUTO') {
+            return $forcedType;
+        }
+
         if (in_array($payment->payment_mean_id, $firsts)) {
             return PaymentInformation::S_RECURRING;
         }
