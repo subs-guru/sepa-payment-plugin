@@ -248,6 +248,12 @@ class SEPAPaymentGateway extends AbstractPaymentGateway
                         'rule' => ['lengthBetween', 2, 2],
                         'message' => __d('SubsGuru/SEPA', "IBAN key should be two digits")
                     ]
+                ],
+                'validators' => [
+                    'length' => [
+                        'rule' => ['lengthBetween', 2, 2],
+                        'message' => __d('SubsGuru/SEPA', "Country code should be two characters (example: DE, FR)")
+                    ]
                 ]
             ],
             'iban_code' => [
@@ -256,7 +262,13 @@ class SEPAPaymentGateway extends AbstractPaymentGateway
                     'type' => 'text',
                     'required' => true
                 ],
-                'displayer' => [$this, 'displayIBAN']
+                'displayer' => [$this, 'displayIBAN'],
+                'validators' => [
+                    'length' => [
+                        'rule' => [$this, 'validateIBANCode'],
+                        'message' => __d('SubsGuru/SEPA', "IBAN is not valid")
+                    ]
+                ]
             ],
             'bic' => [
                 'field' => [
@@ -380,14 +392,33 @@ class SEPAPaymentGateway extends AbstractPaymentGateway
     }
 
     /**
-     * IBAN validator.
+     * Full IBAN validator.
      *
-     * @param  string $iban IBAN to valiate
+     * @param  string $iban Full IBAN to valiate
      * @return bool `true` if valid
      */
     public function validateIBAN($iban)
     {
         return verify_iban(iban_to_machine_format($iban), true) === true;
+    }
+
+    /**
+     * IBAN code validator.
+     *
+     * @param  string $iban IBAN code to valiate
+     * @return bool `true` if valid
+     */
+    public function validateIBANCode($ibanCode, $form)
+    {
+        if (empty($form['data']['sepa_iban_country']) || empty($form['data']['sepa_iban_key'])) {
+            // We don't notify user that IBAN is not valid until country code or key are not given.
+            // Anyway, validation will fail.
+            return true;
+        }
+
+        $iban = $form['data']['sepa_iban_country'] . $form['data']['sepa_iban_key'] . $ibanCode;
+
+        return verify_iban($iban, true) === true;
     }
 
     /**
