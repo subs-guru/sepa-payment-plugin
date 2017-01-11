@@ -173,7 +173,7 @@ class PaymentsController extends AbstractPaymentGatewayController
                 }
 
                 $payment->updateStatus(
-                    $this->getPaymentGateway()->getSuccessStatus(),
+                    'exported',
                     __d('SubsGuru/SEPA', "Exported into file `{0}`", basename($file)),
                     ['filename' => basename($file)],
                     true

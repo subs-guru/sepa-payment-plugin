@@ -61,7 +61,8 @@ class SEPAPaymentGateway extends AbstractPaymentGateway
     public function getIntermediateStatuses()
     {
         return [
-            'ready' => __d('SubsGuru/SEPA', "Waiting for export")
+            'ready' => __d('SubsGuru/SEPA', "Waiting for export"),
+            'exported' => __d('SubsGuru/SEPA', "Waiting for payment")
         ];
     }
 
@@ -78,6 +79,15 @@ class SEPAPaymentGateway extends AbstractPaymentGateway
                     'plugin' => 'SubsGuru/SEPA',
                     'controller' => 'Payments',
                     'action' => 'export'
+                ])
+            ],
+            'paid' => [
+                'title' => __d('SubsGuru/SEPA', "Set as paid"),
+                'icon' => 'check',
+                'url' => Router::url([
+                    'plugin' => null,
+                    'controller' => 'ManualPaymentManagement',
+                    'action' => 'set-as-paid'
                 ])
             ]
         ];
