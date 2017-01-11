@@ -2,6 +2,7 @@
 namespace SubsGuru\SEPA\Controller;
 
 use App\Controller\AbstractPaymentGatewayController;
+use Cake\Core\Configure;
 use Cake\I18n\Time;
 use Cake\Network\Exception\InternalErrorException;
 use Cake\ORM\TableRegistry;
@@ -59,12 +60,10 @@ class PaymentsController extends AbstractPaymentGatewayController
         $paymentsCounters = $this->getPaymentsCounters($payments);
         $sepaDocuments = [];
 
-        // Payment name
-        $paymentId = uniqid();
-        $paymentName = date('Y-m-d-H-i-s') . '-' . $paymentId;
-
         // Creating all XML nodes for each payment
         foreach ($payments as $payment) {
+            $paymentName = str_replace('-', '', $payment->id);
+
             if (!isset($this->request->data['type-' . $payment->id])) {
                 $payment->__ignore = true;
                 continue;
@@ -80,21 +79,26 @@ class PaymentsController extends AbstractPaymentGatewayController
                 $type = $this->detectSepaType($payment, $paymentsCounters);
             }
 
-            if (!isset($sepaDocuments[$type])) {
-                // Creating SEPA document for current type
-                $documentName = md5(implode(',', $this->getSelection()));
-                $sepaDocuments[$type] = TransferFileFacadeFactory::createDirectDebit($documentName, $config['compagny'], $config['format']);
+            // Creating SEPA document for current type
+            $documentName = md5(implode(',', $this->getSelection()));
 
-                // Payment creditor informations
-                $sepaDocuments[$type]->addPaymentInfo($paymentName, [
-                    'id'                    => $paymentName,
-                    'creditorName'          => $config['compagny'],
-                    'creditorAccountIBAN'   => $config['iban'],
-                    'creditorAgentBIC'      => $config['bic'],
-                    'creditorId'            => $config['ics'],
-                    'seqType'               => $type
-                ]);
+            if (!isset($sepaDocuments[$type])) {
+                $sepaDocuments[$type] = TransferFileFacadeFactory::createDirectDebit(
+                    $documentName,
+                    $config['compagny'],
+                    $config['format']
+                );
             }
+
+            // Payment creditor informations
+            $sepaDocuments[$type]->addPaymentInfo($paymentName, [
+                'id'                    => $paymentName,
+                'creditorName'          => $config['compagny'],
+                'creditorAccountIBAN'   => $config['iban'],
+                'creditorAgentBIC'      => $config['bic'],
+                'creditorId'            => $config['ics'],
+                'seqType'               => $type
+            ]);
 
             // Payment debitor informations
             $sepaDocuments[$type]->addTransfer($paymentName, [
@@ -113,7 +117,7 @@ class PaymentsController extends AbstractPaymentGatewayController
 
         foreach ($sepaDocuments as $sepaType => $sepaDocument) {
             if (!$this->validateDocument($xml = $sepaDocument->asXml())) {
-                throw new \Exception("Invalid XML document for type {$sepaType} (format: {$config['format']})");
+                throw new \Exception("Cannot validate XML document for type {$sepaType} (format: {$config['format']})");
             } else {
                 $sepaXml[$sepaType] = $xml;
             }
@@ -123,7 +127,7 @@ class PaymentsController extends AbstractPaymentGatewayController
         if (!empty($this->request->data['type'])) {
             // Creating XML file
             $type = $this->request->data['type'];
-            $file = SEPA_XML_FOLDER . '/sepa-exports-' . strtoupper($this->request->data['type']) . '-' . date('Y-m-d-H\hh') . '-' . $paymentId .'.xml';
+            $file = SEPA_XML_FOLDER . '/sepa-exports-' . strtoupper($this->request->data['type']) . '-' . date('Y-m-d-H\hh') . '.xml';
 
             $this->createTempDir($file);
 
