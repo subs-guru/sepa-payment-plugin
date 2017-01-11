@@ -86,7 +86,7 @@
                                     {% if isReady %}
                                         <i class="fa fa-check-circle text-green"></i>
                                         {{ __d('SubsGuru/SEPA', 'Ready') }}
-                                    {% elseif payment.isSuccessful() %}
+                                    {% elseif payment.isSuccessful() or payment.getCurrentStatus().name == 'exported' %}
                                         <i class="fa fa-warning text-orange"></i>
                                         <span class="trigger-tipsy tipsy-s" title="{{ __d('SubsGuru/SEPA', "Exported on {0}", payment.payment_dt|default('unknown')) }}">
                                             {{ __d('SubsGuru/SEPA', 'Already exported !') }}
