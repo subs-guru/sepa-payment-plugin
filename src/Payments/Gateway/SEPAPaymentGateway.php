@@ -299,6 +299,14 @@ class SEPAPaymentGateway extends AbstractPaymentGateway
     /**
      * {@inheritDoc}
      */
+    public function getCurrentServiceInformations(PaymentMean $paymentMean)
+    {
+        return [];
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public function validateConfiguration(array $config)
     {
         if (!isset($config['iban'])) {
