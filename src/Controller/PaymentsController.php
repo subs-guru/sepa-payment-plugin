@@ -94,18 +94,22 @@ class PaymentsController extends AbstractPaymentGatewayController
             $sepaDocuments[$type]->addPaymentInfo($paymentName, [
                 'id'                    => $paymentName,
                 'creditorName'          => $config['compagny'],
-                'creditorAccountIBAN'   => $config['iban'],
-                'creditorAgentBIC'      => $config['bic'],
+                'creditorAccountIBAN'   => strtoupper($config['iban']),
+                'creditorAgentBIC'      => strtoupper(str_pad($config['bic'], 11, 'X')),
                 'creditorId'            => $config['ics'],
                 'seqType'               => $type
             ]);
 
+            $debtorName = (!empty($payment->payment_mean->customer->org_legal_name))
+                ? $payment->payment_mean->customer->org_legal_name
+                : $payment->payment_mean->customer->org_business_name;
+
             // Payment debitor informations
             $sepaDocuments[$type]->addTransfer($paymentName, [
                 'amount'                => $payment->getAmount(),
-                'debtorIban'            => $iban,
-                'debtorBic'             => $parameters['bic'],
-                'debtorName'            => $payment->payment_mean->customer->org_legal_name,
+                'debtorIban'            => strtoupper($iban),
+                'debtorBic'             => strtoupper(str_pad($parameters['bic'], 11, 'X')),
+                'debtorName'            => $debtorName,
                 'debtorMandate'         => $payment->payment_mean->customer->created,
                 'debtorMandateSignDate' => (!empty($parameters['mandate_sign_date'])) ? $parameters['mandate_sign_date'] : '2014-02-01',
                 'remittanceInformation' => $payment->id
@@ -287,6 +291,6 @@ class PaymentsController extends AbstractPaymentGatewayController
 
         $validationFile = (is_file($pain)) ? $pain : dirname(__DIR__) . '/' . $pain . '.xsd';
 
-        return @$domdoc->schemaValidate($validationFile);
+        return $domdoc->schemaValidate($validationFile);
     }
 }

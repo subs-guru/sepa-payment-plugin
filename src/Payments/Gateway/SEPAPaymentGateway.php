@@ -51,12 +51,12 @@ class SEPAPaymentGateway extends AbstractPaymentGateway
     /**
      * {@inheritDoc}
      */
-    public function getPossibleStatuses()
-    {
-        return array_merge(parent::getPossibleStatuses(), [
-            $this->getSuccessStatus() => __d('SubsGuru/SEPA', "Exported")
-        ]);
-    }
+    // public function getPossibleStatuses()
+    // {
+    //     return array_merge(parent::getPossibleStatuses(), [
+    //         $this->getSuccessStatus() => __d('SubsGuru/SEPA', "Exported")
+    //     ]);
+    // }
 
     public function getIntermediateStatuses()
     {
