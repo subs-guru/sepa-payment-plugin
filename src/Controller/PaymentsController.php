@@ -97,7 +97,8 @@ class PaymentsController extends AbstractPaymentGatewayController
                 'creditorAccountIBAN'   => strtoupper($config['iban']),
                 'creditorAgentBIC'      => strtoupper(str_pad($config['bic'], 11, 'X')),
                 'creditorId'            => $config['ics'],
-                'seqType'               => $type
+                'seqType'               => $type,
+                'dueDate'               => date('Y-m-d')
             ]);
 
             $debtorName = (!empty($payment->payment_mean->customer->org_legal_name))
@@ -112,7 +113,8 @@ class PaymentsController extends AbstractPaymentGatewayController
                 'debtorName'            => $debtorName,
                 'debtorMandate'         => $payment->payment_mean->customer->created,
                 'debtorMandateSignDate' => (!empty($parameters['mandate_sign_date'])) ? $parameters['mandate_sign_date'] : '2014-02-01',
-                'remittanceInformation' => $payment->id
+                'remittanceInformation' => $payment->id,
+                'dueDate'               => date('Y-m-d')
             ]);
         }
 
