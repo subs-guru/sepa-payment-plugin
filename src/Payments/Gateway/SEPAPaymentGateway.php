@@ -354,6 +354,14 @@ class SEPAPaymentGateway extends AbstractPaymentGateway
     /**
      * {@inheritDoc}
      */
+    public function isRecoverable(Payment $payment)
+    {
+        return false;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public function doPayment(Payment $payment, array $config, array $parameters, $amount, $currency, $recurrent = false)
     {
         // Full IBAN check
@@ -366,6 +374,14 @@ class SEPAPaymentGateway extends AbstractPaymentGateway
         }
 
         $payment->updateStatus(static::STATUS_READY);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function doRecover(Payment $payment, array $config, array $params)
+    {
+        throw new \Exception("Not supported");
     }
 
     /**
