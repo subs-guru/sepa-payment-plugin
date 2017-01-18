@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2017-01-18 11:20+0100\n"
-"PO-Revision-Date: 2017-01-18 11:21+0100\n"
+"POT-Creation-Date: 2017-01-18 17:51+0100\n"
+"PO-Revision-Date: 2017-01-18 17:52+0100\n"
 "Last-Translator: \n"
 "Language-Team: EMAIL@ADDRESS\n"
 "Language: fr_FR\n"
@@ -168,6 +168,18 @@ msgid ""
 msgstr ""
 "Optionnel, utilisez ce paramètre pour utiliser un ancien identifiant de "
 "mandat plutôt que l’identifiant client provenant de Subs.Guru"
+
+#: /Volumes/Mars/Web/spread/subsguru/www/Payments/Gateway/SEPAPaymentGateway.php:306
+msgid "Mandate signature date"
+msgstr "Date de signature du mandat"
+
+#: /Volumes/Mars/Web/spread/subsguru/www/Payments/Gateway/SEPAPaymentGateway.php:310
+msgid ""
+"Optional, use this parameter to use an old mandate signature date instead of "
+"payment mean creation date"
+msgstr ""
+"Optionnel, utilisez ce paramètre pour utiliser une date spécifique de "
+"signature de mandat plutôt que la date de création du moyen de paiement"
 
 #: /Volumes/Mars/Web/spread/subsguru/www/tmp/cache/twigView-i18n-extract/0b/0bcc00657fa29e8a54dc9acc018ba113c76a3ca9ddd0b926374abe4b34b55b7e.php:27
 msgid "SEPA payments export"

@@ -300,6 +300,14 @@ class SEPAPaymentGateway extends AbstractPaymentGateway
                     'required' => false
                 ],
                 'help' => __d('SubsGuru/SEPA', "Optional, use this parameter to use an old mandate ID instead of Subs.Guru customer ID")
+            ],
+            'mandate_sign_date' => [
+                'field' => [
+                    'label' => __d('SubsGuru/SEPA', "Mandate signature date"),
+                    'type' => 'text',
+                    'required' => false
+                ],
+                'help' => __d('SubsGuru/SEPA', "Optional, use this parameter to use an old mandate signature date instead of payment mean creation date")
             ]
         ];
     }

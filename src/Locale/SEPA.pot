@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2017-01-18 10:20+0000\n"
+"POT-Creation-Date: 2017-01-18 16:50+0000\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -160,6 +160,14 @@ msgstr ""
 
 #: /Volumes/Mars/Web/spread/subsguru/www/Payments/Gateway/SEPAPaymentGateway.php:302
 msgid "Optional, use this parameter to use an old mandate ID instead of Subs.Guru customer ID"
+msgstr ""
+
+#: /Volumes/Mars/Web/spread/subsguru/www/Payments/Gateway/SEPAPaymentGateway.php:306
+msgid "Mandate signature date"
+msgstr ""
+
+#: /Volumes/Mars/Web/spread/subsguru/www/Payments/Gateway/SEPAPaymentGateway.php:310
+msgid "Optional, use this parameter to use an old mandate signature date instead of payment mean creation date"
 msgstr ""
 
 #: /Volumes/Mars/Web/spread/subsguru/www/tmp/cache/twigView-i18n-extract/0b/0bcc00657fa29e8a54dc9acc018ba113c76a3ca9ddd0b926374abe4b34b55b7e.php:27
