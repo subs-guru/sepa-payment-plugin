@@ -122,17 +122,17 @@ class SEPAPaymentGateway extends AbstractPaymentGateway
                     'type' => 'select',
                     'required' => true,
                     'options' => [
-                        'AUTO' => __d('SubsGuru/SEPA', 'Automatic (not forced)'),
-                        PaymentInformation::S_RECURRING => 'recurring (forced)',
-                        PaymentInformation::S_FIRST => 'first (forced)'
+                        'AUTO' => __d('SubsGuru/SEPA', "Automatic (not forced)"),
+                        PaymentInformation::S_RECURRING => __d('SubsGuru/SEPA', "recurring (forced)"),
+                        PaymentInformation::S_FIRST => __d('SubsGuru/SEPA', "first (forced)")
                     ],
                     'default' => 'AUTO'
                 ],
-                'help' => __d('SubsGuru/SEPA', 'Use this setting to force default export type')
+                'help' => __d('SubsGuru/SEPA', "Use this setting to force default export type")
             ],
             'iban' => [
                 'field' => [
-                    'label' => __d('SubsGuru/SEPA', 'Creditor account IBAN'),
+                    'label' => __d('SubsGuru/SEPA', "Creditor account IBAN"),
                     'type' => 'text',
                     'required' => true
                 ],
@@ -145,7 +145,7 @@ class SEPAPaymentGateway extends AbstractPaymentGateway
             ],
             'bic' => [
                 'field' => [
-                    'label' => __d('SubsGuru/SEPA', 'Creditor account BIC'),
+                    'label' => __d('SubsGuru/SEPA', "Creditor account BIC"),
                     'type' => 'text',
                     'required' => true
                 ],
@@ -158,63 +158,63 @@ class SEPAPaymentGateway extends AbstractPaymentGateway
             ],
             'ics' => [
                 'field' => [
-                    'label' => __d('SubsGuru/SEPA', 'Agent ICS'),
+                    'label' => __d('SubsGuru/SEPA', "Agent ICS"),
                     'type' => 'text',
                     'required' => true
                 ]
             ],
             'compagny' => [
                 'field' => [
-                    'label' => __d('SubsGuru/SEPA', 'Compagny legal name'),
+                    'label' => __d('SubsGuru/SEPA', "Compagny legal name"),
                     'type' => 'text',
                     'required' => true
                 ]
             ],
             'siret' => [
                 'field' => [
-                    'label' => __d('SubsGuru/SEPA', 'Compagny SIRET'),
+                    'label' => __d('SubsGuru/SEPA', "Compagny SIRET"),
                     'type' => 'text',
                     'required' => true
                 ]
             ],
             'tva' => [
                 'field' => [
-                    'label' => __d('SubsGuru/SEPA', 'Creditor TVA code'),
+                    'label' => __d('SubsGuru/SEPA', "Creditor TVA code"),
                     'type' => 'text',
                     'required' => true
                 ]
             ],
             'short_description' => [
                 'field' => [
-                    'label' => __d('SubsGuru/SEPA', 'Compagny short description'),
+                    'label' => __d('SubsGuru/SEPA', "Compagny short description"),
                     'type' => 'text',
                     'required' => true
                 ]
             ],
             'address' => [
                 'field' => [
-                    'label' => __d('SubsGuru/SEPA', 'Creditor address'),
+                    'label' => __d('SubsGuru/SEPA', "Creditor address"),
                     'type' => 'text',
                     'required' => true
                 ]
             ],
             'postalCode' => [
                 'field' => [
-                    'label' => __d('SubsGuru/SEPA', 'Creditor postal code'),
+                    'label' => __d('SubsGuru/SEPA', "Creditor postal code"),
                     'type' => 'text',
                     'required' => true
                 ]
             ],
             'city' => [
                 'field' => [
-                    'label' => __d('SubsGuru/SEPA', 'Creditor city'),
+                    'label' => __d('SubsGuru/SEPA', "Creditor city"),
                     'type' => 'text',
                     'required' => true
                 ]
             ],
             'country' => [
                 'field' => [
-                    'label' => __d('SubsGuru/SEPA', 'Creditor country'),
+                    'label' => __d('SubsGuru/SEPA', "Creditor country"),
                     'type' => 'text',
                     'required' => true
                 ]
@@ -230,7 +230,7 @@ class SEPAPaymentGateway extends AbstractPaymentGateway
         return [
             'iban_country' => [
                 'field' => [
-                    'label' => __d('SubsGuru/SEPA', 'Debitor account IBAN country code'),
+                    'label' => __d('SubsGuru/SEPA', "Debitor account IBAN country code"),
                     'type' => 'text',
                     'placeholder' => 'ex: FR',
                     'required' => true
@@ -244,7 +244,7 @@ class SEPAPaymentGateway extends AbstractPaymentGateway
             ],
             'iban_key' => [
                 'field' => [
-                    'label' => __d('SubsGuru/SEPA', 'Debitor account IBAN key'),
+                    'label' => __d('SubsGuru/SEPA', "Debitor account IBAN key"),
                     'type' => 'text',
                     'placeholder' => 'ex: 76',
                     'required' => true
@@ -268,7 +268,7 @@ class SEPAPaymentGateway extends AbstractPaymentGateway
             ],
             'iban_code' => [
                 'field' => [
-                    'label' => __d('SubsGuru/SEPA', 'Debitor account IBAN number'),
+                    'label' => __d('SubsGuru/SEPA', "Debitor account IBAN number"),
                     'type' => 'text',
                     'required' => true
                 ],
@@ -282,7 +282,7 @@ class SEPAPaymentGateway extends AbstractPaymentGateway
             ],
             'bic' => [
                 'field' => [
-                    'label' => __d('SubsGuru/SEPA', 'BIC'),
+                    'label' => __d('SubsGuru/SEPA', "BIC"),
                     'type' => 'text',
                     'required' => true
                 ],
@@ -292,6 +292,14 @@ class SEPAPaymentGateway extends AbstractPaymentGateway
                         'message' => __d('SubsGuru/SEPA', "BIC format is incorrect")
                     ]
                 ]
+            ],
+            'mandate_id' => [
+                'field' => [
+                    'label' => __d('SubsGuru/SEPA', "Mandate ID"),
+                    'type' => 'text',
+                    'required' => false
+                ],
+                'help' => __d('SubsGuru/SEPA', "Optional, use this parameter to use an old mandate ID instead of Subs.Guru customer ID")
             ]
         ];
     }

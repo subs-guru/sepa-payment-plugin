@@ -78,8 +78,7 @@
                                         'AUTO': 'auto (' ~ debits[payment.get('sepa_type')] ~ ')',
                                         'Manual': debits
                                     },{
-                                        'default': 'auto',
-                                        'disabled': (not isReady and payment.isSuccessful() != true)
+                                        'default': 'auto'
                                     })|raw }}
                                 </td>
                                 <td class="status">

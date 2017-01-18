@@ -69,8 +69,8 @@ class PaymentsController extends AbstractPaymentGatewayController
                 continue;
             }
 
-            $type = strtoupper($this->request->data['type-' . $payment->id]);
             $payment->__ignore = false;
+            $type = strtoupper($this->request->data['type-' . $payment->id]);
             $parameters = $payment->payment_mean->getParameters();
 
             $iban = iban_to_machine_format($parameters['iban_country'] . $parameters['iban_key'] . $parameters['iban_code']);
@@ -90,32 +90,43 @@ class PaymentsController extends AbstractPaymentGatewayController
                 );
             }
 
+            $batchBooking = (!empty($config['batchBooking']) && $config['batchBooking'] == 'true')
+                ? 'true'
+                : 'false';
+
             // Payment creditor informations
-            $sepaDocuments[$type]->addPaymentInfo($paymentName, [
-                'id'                    => $paymentName,
-                'creditorName'          => $config['compagny'],
-                'creditorAccountIBAN'   => strtoupper($config['iban']),
-                'creditorAgentBIC'      => strtoupper(str_pad($config['bic'], 11, 'X')),
-                'creditorId'            => $config['ics'],
-                'seqType'               => $type,
-                'dueDate'               => date('Y-m-d')
-            ]);
+            $sepaDocuments[$type]->addPaymentInfo($paymentName,
+                [
+                    'id'                    => $paymentName,
+                    'creditorName'          => $config['compagny'],
+                    'creditorAccountIBAN'   => strtoupper($config['iban']),
+                    'creditorAgentBIC'      => strtoupper(str_pad($config['bic'], 11, 'X')),
+                    'creditorId'            => $config['ics'],
+                    'seqType'               => $type,
+                    'dueDate'               => date('Y-m-d')
+                ])
+                ->setBatchBooking($batchBooking);
 
             $debtorName = (!empty($payment->payment_mean->customer->org_legal_name))
                 ? $payment->payment_mean->customer->org_legal_name
                 : $payment->payment_mean->customer->org_business_name;
 
+            // Default debtor mandate infos, used if customer had no existing SEPA contract outside of Subs.Guru
+            $defaultMandateID = str_replace('-', '', $payment->payment_mean->customer->id);
+            $defaultMandateSignature = '2014-02-01';
+
             // Payment debitor informations
-            $sepaDocuments[$type]->addTransfer($paymentName, [
-                'amount'                => $payment->getAmount(),
-                'debtorIban'            => strtoupper($iban),
-                'debtorBic'             => strtoupper(str_pad($parameters['bic'], 11, 'X')),
-                'debtorName'            => $debtorName,
-                'debtorMandate'         => $payment->payment_mean->customer->created,
-                'debtorMandateSignDate' => (!empty($parameters['mandate_sign_date'])) ? $parameters['mandate_sign_date'] : '2014-02-01',
-                'remittanceInformation' => $payment->id,
-                'dueDate'               => date('Y-m-d')
-            ]);
+            $sepaDocuments[$type]
+                ->addTransfer($paymentName, [
+                    'amount'                => $payment->getAmount(),
+                    'debtorIban'            => strtoupper($iban),
+                    'debtorBic'             => strtoupper(str_pad($parameters['bic'], 11, 'X')),
+                    'debtorName'            => $debtorName,
+                    'debtorMandate'         => (!empty($parameters['mandate_id'])) ? $parameters['mandate_id'] : $defaultMandateID,
+                    'debtorMandateSignDate' => (!empty($parameters['mandate_sign_date'])) ? $parameters['mandate_sign_date'] : $defaultMandateSignature,
+                    'remittanceInformation' => $payment->id,
+                    'dueDate'               => date('Y-m-d')
+                ]);
         }
 
         // Validating created documents
