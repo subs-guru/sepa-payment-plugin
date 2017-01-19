@@ -299,7 +299,7 @@ class SEPAPaymentGateway extends AbstractPaymentGateway
                     'type' => 'text',
                     'required' => false
                 ],
-                'help' => __d('SubsGuru/SEPA', "Optional, use this parameter to use an old mandate ID instead of Subs.Guru customer ID")
+                // 'help' => __d('SubsGuru/SEPA', "Optional, use this parameter to use an old mandate ID instead of Subs.Guru customer ID")
             ],
             'mandate_sign_date' => [
                 'field' => [
@@ -307,9 +307,21 @@ class SEPAPaymentGateway extends AbstractPaymentGateway
                     'type' => 'text',
                     'required' => false
                 ],
-                'help' => __d('SubsGuru/SEPA', "Optional, use this parameter to use an old mandate signature date instead of payment mean creation date")
+                // 'help' => __d('SubsGuru/SEPA', "Optional, use this parameter to use an old mandate signature date instead of payment mean creation date")
             ]
         ];
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getFormFields()
+    {
+        $fields = $this->getParametersFields();
+
+        unset($fields['mandate_id'], $fields['mandate_sign_date']);
+
+        return $fields;
     }
 
     /**
@@ -346,7 +358,8 @@ class SEPAPaymentGateway extends AbstractPaymentGateway
         if (empty($parameters['iban_country']) || empty($parameters['iban_key']) || empty($parameters['iban_code']) ) {
             return false;
         }
-        $iban = iban_to_machine_format($parameters['iban_country'] . $parameters['iban_key'] . $parameters['iban_code']);
+
+        $iban = iban_to_machine_format(strtoupper($parameters['iban_country']) . $parameters['iban_key'] . $parameters['iban_code']);
 
         if (!verify_iban($iban, true)) {
             return false;
@@ -382,7 +395,7 @@ class SEPAPaymentGateway extends AbstractPaymentGateway
     {
         // Full IBAN check
         $iban = iban_to_machine_format(
-            $parameters['iban_country'] . $parameters['iban_key'] . $parameters['iban_code']
+            strtoupper($parameters['iban_country']) . $parameters['iban_key'] . $parameters['iban_code']
         );
 
         if (!verify_iban($iban, true)) {
@@ -405,7 +418,14 @@ class SEPAPaymentGateway extends AbstractPaymentGateway
      */
     public function onCreate(PaymentMean $paymentMean, array $form, array $options = [])
     {
-        $paymentMean->formToParameters($form);
+        $mandate = [
+            'mandate_id' => uniqid(),
+            'mandate_sign_date' => date('Y-m-d')
+        ];
+
+        $form['iban_country'] = strtoupper($form['iban_country']);
+
+        $paymentMean->formToParameters($form + $mandate);
     }
 
     /**
@@ -449,7 +469,7 @@ class SEPAPaymentGateway extends AbstractPaymentGateway
      */
     public function validateIBAN($iban)
     {
-        return verify_iban(iban_to_machine_format($iban), true) === true;
+        return verify_iban(iban_to_machine_format(strtoupper($iban), true)) === true;
     }
 
     /**
@@ -466,7 +486,7 @@ class SEPAPaymentGateway extends AbstractPaymentGateway
             return true;
         }
 
-        $iban = $form['data']['sepa_iban_country'] . $form['data']['sepa_iban_key'] . $ibanCode;
+        $iban = strtoupper($form['data']['sepa_iban_country']) . $form['data']['sepa_iban_key'] . $ibanCode;
 
         return verify_iban($iban, true) === true;
     }
