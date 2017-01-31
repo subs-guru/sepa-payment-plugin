@@ -418,12 +418,17 @@ class SEPAPaymentGateway extends AbstractPaymentGateway
      */
     public function onCreate(PaymentMean $paymentMean, array $form, array $options = [])
     {
+        // Mandate
         $mandate = [
             'mandate_id' => uniqid(),
             'mandate_sign_date' => date('Y-m-d')
         ];
 
+        // Country is always uppercase.
         $form['iban_country'] = strtoupper($form['iban_country']);
+
+        // BIC should be a 11 length string, completing it with "X" if needed.
+        $form['bic'] = str_pad($form['bic'], 11, 'X');
 
         $paymentMean->formToParameters($form + $mandate);
     }
