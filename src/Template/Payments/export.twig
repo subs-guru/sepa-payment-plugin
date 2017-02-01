@@ -1,4 +1,5 @@
 {% import "../Macros/payments.twig" as paymentsMacros %}
+{% import "../Macros/invoices.twig" as invoicesMacros %}
 
 {{ _view.assign('title', __d('SubsGuru/SEPA', 'SEPA payments export')) }}
 {{ _view.assign('page-title', __d('SubsGuru/SEPA', 'Exporting SEPA payments')) }}
@@ -21,6 +22,13 @@
                 <i class="fa fa-warning"></i>
                 {{ __d('SubsGuru/SEPA', "{0} payments are ignored in your selection because they are not SEPA payments", ignoredCount) }}.
             </div>
+        {% endif %}
+
+        {% if referer is not empty %}
+            <a href="{{ referer }}" class="btn btn-default btn-xs" style="margin-bottom: 10px">
+                <i class="fa fa-arrow-left"></i>&nbsp;
+                {{ __('Go back') }}
+            </a>
         {% endif %}
 
         <div class="title">
@@ -59,7 +67,11 @@
                                     </a>
                                 </td>
                                 <td class="invoice-ref">
-                                    <span class="text-muted">-</span>
+                                    {% for invoice in payment.invoices %}
+                                        <a href="{{ Url.build({ 'controller':'Invoices', 'action':'view', 0:invoice.id}) }}" class="trigger-tipsy tipsy-s" title="{{ invoice.period_info }}" target="_blank">{{ invoicesMacros.num(invoice) }}</a>
+                                    {% else %}
+                                        <span class="text-muted">No invoice</span>
+                                    {% endfor %}
                                 </td>
                                 <td class="amount">
                                     <a href="{{ Url.build({ 'plugin':null, 'controller':'Payments', 'action':'view', 0:payment.id }) }}" class="trigger-tipsy tipsy-s" title="Click to view payment" target="_blank">

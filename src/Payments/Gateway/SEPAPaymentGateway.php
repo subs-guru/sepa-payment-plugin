@@ -84,6 +84,7 @@ class SEPAPaymentGateway extends AbstractPaymentGateway
             'paid' => [
                 'title' => __d('SubsGuru/SEPA', "Set as paid"),
                 'icon' => 'check',
+                'color' => 'green',
                 'url' => Router::url([
                     'plugin' => null,
                     'controller' => 'ManualPaymentManagement',
