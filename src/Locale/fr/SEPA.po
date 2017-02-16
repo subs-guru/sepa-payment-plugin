@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "POT-Creation-Date: 2017-01-18 17:51+0100\n"
-"PO-Revision-Date: 2017-01-18 17:52+0100\n"
+"PO-Revision-Date: 2017-02-16 17:13+0100\n"
 "Last-Translator: \n"
 "Language-Team: EMAIL@ADDRESS\n"
 "Language: fr_FR\n"
@@ -46,7 +46,7 @@ msgstr "Exporter les fichiers SEPA"
 
 #: /Volumes/Mars/Web/spread/subsguru/www/Payments/Gateway/SEPAPaymentGateway.php:85
 msgid "Set as paid"
-msgstr "Marqué comme payé"
+msgstr "Marquer comme payé"
 
 #: /Volumes/Mars/Web/spread/subsguru/www/Payments/Gateway/SEPAPaymentGateway.php:104
 msgid "SEPA export format"
