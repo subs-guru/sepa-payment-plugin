@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2017-01-18 16:50+0000\n"
+"POT-Creation-Date: 2017-02-17 15:05+0000\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -14,239 +14,235 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 
-#: /Volumes/Mars/Web/spread/subsguru/www/Controller/PaymentsController.php:152
+#: /Volumes/Mars/Web/spread/subsguru/www/Controller/PaymentsController.php:153
 msgid "No document matched selected type ({0}), nothing to export."
 msgstr ""
 
-#: /Volumes/Mars/Web/spread/subsguru/www/Controller/PaymentsController.php:198
+#: /Volumes/Mars/Web/spread/subsguru/www/Controller/PaymentsController.php:165
+msgid "Nothing to export."
+msgstr ""
+
+#: /Volumes/Mars/Web/spread/subsguru/www/Controller/PaymentsController.php:204
 msgid "Exported into file `{0}`"
 msgstr ""
 
-#: /Volumes/Mars/Web/spread/subsguru/www/Payments/Gateway/SEPAPaymentGateway.php:40
+#: /Volumes/Mars/Web/spread/subsguru/www/Payments/Gateway/SEPAPaymentGateway.php:43
 msgid "SEPA"
 msgstr ""
 
-#: /Volumes/Mars/Web/spread/subsguru/www/Payments/Gateway/SEPAPaymentGateway.php:48
+#: /Volumes/Mars/Web/spread/subsguru/www/Payments/Gateway/SEPAPaymentGateway.php:51
 msgid "SEPA payment"
 msgstr ""
 
-#: /Volumes/Mars/Web/spread/subsguru/www/Payments/Gateway/SEPAPaymentGateway.php:64
+#: /Volumes/Mars/Web/spread/subsguru/www/Payments/Gateway/SEPAPaymentGateway.php:60
 msgid "Waiting for export"
 msgstr ""
 
-#: /Volumes/Mars/Web/spread/subsguru/www/Payments/Gateway/SEPAPaymentGateway.php:65
+#: /Volumes/Mars/Web/spread/subsguru/www/Payments/Gateway/SEPAPaymentGateway.php:61
 msgid "Waiting for payment"
 msgstr ""
 
-#: /Volumes/Mars/Web/spread/subsguru/www/Payments/Gateway/SEPAPaymentGateway.php:76
+#: /Volumes/Mars/Web/spread/subsguru/www/Payments/Gateway/SEPAPaymentGateway.php:72
 msgid "Export SEPA files"
 msgstr ""
 
-#: /Volumes/Mars/Web/spread/subsguru/www/Payments/Gateway/SEPAPaymentGateway.php:85
+#: /Volumes/Mars/Web/spread/subsguru/www/Payments/Gateway/SEPAPaymentGateway.php:81
 msgid "Set as paid"
 msgstr ""
 
-#: /Volumes/Mars/Web/spread/subsguru/www/Payments/Gateway/SEPAPaymentGateway.php:104
+#: /Volumes/Mars/Web/spread/subsguru/www/Payments/Gateway/SEPAPaymentGateway.php:101
 msgid "SEPA export format"
 msgstr ""
 
-#: /Volumes/Mars/Web/spread/subsguru/www/Payments/Gateway/SEPAPaymentGateway.php:115;142
+#: /Volumes/Mars/Web/spread/subsguru/www/Payments/Gateway/SEPAPaymentGateway.php:112;139
 msgid "IBAN format is incorrect"
 msgstr ""
 
-#: /Volumes/Mars/Web/spread/subsguru/www/Payments/Gateway/SEPAPaymentGateway.php:121
+#: /Volumes/Mars/Web/spread/subsguru/www/Payments/Gateway/SEPAPaymentGateway.php:118
 msgid "Force export type"
 msgstr ""
 
-#: /Volumes/Mars/Web/spread/subsguru/www/Payments/Gateway/SEPAPaymentGateway.php:125
+#: /Volumes/Mars/Web/spread/subsguru/www/Payments/Gateway/SEPAPaymentGateway.php:122
 msgid "Automatic (not forced)"
 msgstr ""
 
-#: /Volumes/Mars/Web/spread/subsguru/www/Payments/Gateway/SEPAPaymentGateway.php:126
+#: /Volumes/Mars/Web/spread/subsguru/www/Payments/Gateway/SEPAPaymentGateway.php:123
 msgid "recurring (forced)"
 msgstr ""
 
-#: /Volumes/Mars/Web/spread/subsguru/www/Payments/Gateway/SEPAPaymentGateway.php:127
+#: /Volumes/Mars/Web/spread/subsguru/www/Payments/Gateway/SEPAPaymentGateway.php:124
 msgid "first (forced)"
 msgstr ""
 
-#: /Volumes/Mars/Web/spread/subsguru/www/Payments/Gateway/SEPAPaymentGateway.php:131
+#: /Volumes/Mars/Web/spread/subsguru/www/Payments/Gateway/SEPAPaymentGateway.php:128
 msgid "Use this setting to force default export type"
 msgstr ""
 
-#: /Volumes/Mars/Web/spread/subsguru/www/Payments/Gateway/SEPAPaymentGateway.php:135
+#: /Volumes/Mars/Web/spread/subsguru/www/Payments/Gateway/SEPAPaymentGateway.php:132
 msgid "Creditor account IBAN"
 msgstr ""
 
-#: /Volumes/Mars/Web/spread/subsguru/www/Payments/Gateway/SEPAPaymentGateway.php:148
+#: /Volumes/Mars/Web/spread/subsguru/www/Payments/Gateway/SEPAPaymentGateway.php:145
 msgid "Creditor account BIC"
 msgstr ""
 
-#: /Volumes/Mars/Web/spread/subsguru/www/Payments/Gateway/SEPAPaymentGateway.php:155;292
+#: /Volumes/Mars/Web/spread/subsguru/www/Payments/Gateway/SEPAPaymentGateway.php:152;289
 msgid "BIC format is incorrect"
 msgstr ""
 
-#: /Volumes/Mars/Web/spread/subsguru/www/Payments/Gateway/SEPAPaymentGateway.php:161
+#: /Volumes/Mars/Web/spread/subsguru/www/Payments/Gateway/SEPAPaymentGateway.php:158
 msgid "Agent ICS"
 msgstr ""
 
-#: /Volumes/Mars/Web/spread/subsguru/www/Payments/Gateway/SEPAPaymentGateway.php:168
+#: /Volumes/Mars/Web/spread/subsguru/www/Payments/Gateway/SEPAPaymentGateway.php:165
 msgid "Compagny legal name"
 msgstr ""
 
-#: /Volumes/Mars/Web/spread/subsguru/www/Payments/Gateway/SEPAPaymentGateway.php:175
+#: /Volumes/Mars/Web/spread/subsguru/www/Payments/Gateway/SEPAPaymentGateway.php:172
 msgid "Compagny SIRET"
 msgstr ""
 
-#: /Volumes/Mars/Web/spread/subsguru/www/Payments/Gateway/SEPAPaymentGateway.php:182
+#: /Volumes/Mars/Web/spread/subsguru/www/Payments/Gateway/SEPAPaymentGateway.php:179
 msgid "Creditor TVA code"
 msgstr ""
 
-#: /Volumes/Mars/Web/spread/subsguru/www/Payments/Gateway/SEPAPaymentGateway.php:189
+#: /Volumes/Mars/Web/spread/subsguru/www/Payments/Gateway/SEPAPaymentGateway.php:186
 msgid "Compagny short description"
 msgstr ""
 
-#: /Volumes/Mars/Web/spread/subsguru/www/Payments/Gateway/SEPAPaymentGateway.php:196
+#: /Volumes/Mars/Web/spread/subsguru/www/Payments/Gateway/SEPAPaymentGateway.php:193
 msgid "Creditor address"
 msgstr ""
 
-#: /Volumes/Mars/Web/spread/subsguru/www/Payments/Gateway/SEPAPaymentGateway.php:203
+#: /Volumes/Mars/Web/spread/subsguru/www/Payments/Gateway/SEPAPaymentGateway.php:200
 msgid "Creditor postal code"
 msgstr ""
 
-#: /Volumes/Mars/Web/spread/subsguru/www/Payments/Gateway/SEPAPaymentGateway.php:210
+#: /Volumes/Mars/Web/spread/subsguru/www/Payments/Gateway/SEPAPaymentGateway.php:207
 msgid "Creditor city"
 msgstr ""
 
-#: /Volumes/Mars/Web/spread/subsguru/www/Payments/Gateway/SEPAPaymentGateway.php:217
+#: /Volumes/Mars/Web/spread/subsguru/www/Payments/Gateway/SEPAPaymentGateway.php:214
 msgid "Creditor country"
 msgstr ""
 
-#: /Volumes/Mars/Web/spread/subsguru/www/Payments/Gateway/SEPAPaymentGateway.php:233
+#: /Volumes/Mars/Web/spread/subsguru/www/Payments/Gateway/SEPAPaymentGateway.php:230
 msgid "Debitor account IBAN country code"
 msgstr ""
 
-#: /Volumes/Mars/Web/spread/subsguru/www/Payments/Gateway/SEPAPaymentGateway.php:241;265
+#: /Volumes/Mars/Web/spread/subsguru/www/Payments/Gateway/SEPAPaymentGateway.php:238;262
 msgid "Country code should be two characters (example: DE, FR)"
 msgstr ""
 
-#: /Volumes/Mars/Web/spread/subsguru/www/Payments/Gateway/SEPAPaymentGateway.php:247
+#: /Volumes/Mars/Web/spread/subsguru/www/Payments/Gateway/SEPAPaymentGateway.php:244
 msgid "Debitor account IBAN key"
 msgstr ""
 
-#: /Volumes/Mars/Web/spread/subsguru/www/Payments/Gateway/SEPAPaymentGateway.php:255
+#: /Volumes/Mars/Web/spread/subsguru/www/Payments/Gateway/SEPAPaymentGateway.php:252
 msgid "IBAN key should be a numerical value"
 msgstr ""
 
-#: /Volumes/Mars/Web/spread/subsguru/www/Payments/Gateway/SEPAPaymentGateway.php:259
+#: /Volumes/Mars/Web/spread/subsguru/www/Payments/Gateway/SEPAPaymentGateway.php:256
 msgid "IBAN key should be two digits"
 msgstr ""
 
-#: /Volumes/Mars/Web/spread/subsguru/www/Payments/Gateway/SEPAPaymentGateway.php:271
+#: /Volumes/Mars/Web/spread/subsguru/www/Payments/Gateway/SEPAPaymentGateway.php:268
 msgid "Debitor account IBAN number"
 msgstr ""
 
-#: /Volumes/Mars/Web/spread/subsguru/www/Payments/Gateway/SEPAPaymentGateway.php:279
+#: /Volumes/Mars/Web/spread/subsguru/www/Payments/Gateway/SEPAPaymentGateway.php:276
 msgid "IBAN is not valid"
 msgstr ""
 
-#: /Volumes/Mars/Web/spread/subsguru/www/Payments/Gateway/SEPAPaymentGateway.php:285
+#: /Volumes/Mars/Web/spread/subsguru/www/Payments/Gateway/SEPAPaymentGateway.php:282
 msgid "BIC"
 msgstr ""
 
-#: /Volumes/Mars/Web/spread/subsguru/www/Payments/Gateway/SEPAPaymentGateway.php:298
+#: /Volumes/Mars/Web/spread/subsguru/www/Payments/Gateway/SEPAPaymentGateway.php:295
 msgid "Mandate ID"
 msgstr ""
 
-#: /Volumes/Mars/Web/spread/subsguru/www/Payments/Gateway/SEPAPaymentGateway.php:302
-msgid "Optional, use this parameter to use an old mandate ID instead of Subs.Guru customer ID"
-msgstr ""
-
-#: /Volumes/Mars/Web/spread/subsguru/www/Payments/Gateway/SEPAPaymentGateway.php:306
+#: /Volumes/Mars/Web/spread/subsguru/www/Payments/Gateway/SEPAPaymentGateway.php:303
 msgid "Mandate signature date"
 msgstr ""
 
-#: /Volumes/Mars/Web/spread/subsguru/www/Payments/Gateway/SEPAPaymentGateway.php:310
-msgid "Optional, use this parameter to use an old mandate signature date instead of payment mean creation date"
-msgstr ""
-
-#: /Volumes/Mars/Web/spread/subsguru/www/tmp/cache/twigView-i18n-extract/0b/0bcc00657fa29e8a54dc9acc018ba113c76a3ca9ddd0b926374abe4b34b55b7e.php:27
+#: /Volumes/Mars/Web/spread/subsguru/www/tmp/cache/twigView-i18n-extract/3f/3fbc5bdde8b892b2cce3dba3ea49fe6b1b1370d1fee98a8f30d7b7a9aada0cc7.php:26
 msgid "SEPA payments export"
 msgstr ""
 
-#: /Volumes/Mars/Web/spread/subsguru/www/tmp/cache/twigView-i18n-extract/0b/0bcc00657fa29e8a54dc9acc018ba113c76a3ca9ddd0b926374abe4b34b55b7e.php:31;40
+#: /Volumes/Mars/Web/spread/subsguru/www/tmp/cache/twigView-i18n-extract/3f/3fbc5bdde8b892b2cce3dba3ea49fe6b1b1370d1fee98a8f30d7b7a9aada0cc7.php:30;39
 msgid "Exporting SEPA payments"
 msgstr ""
 
-#: /Volumes/Mars/Web/spread/subsguru/www/tmp/cache/twigView-i18n-extract/0b/0bcc00657fa29e8a54dc9acc018ba113c76a3ca9ddd0b926374abe4b34b55b7e.php:36
+#: /Volumes/Mars/Web/spread/subsguru/www/tmp/cache/twigView-i18n-extract/3f/3fbc5bdde8b892b2cce3dba3ea49fe6b1b1370d1fee98a8f30d7b7a9aada0cc7.php:35
 msgid "Payments"
 msgstr ""
 
-#: /Volumes/Mars/Web/spread/subsguru/www/tmp/cache/twigView-i18n-extract/0b/0bcc00657fa29e8a54dc9acc018ba113c76a3ca9ddd0b926374abe4b34b55b7e.php:75
+#: /Volumes/Mars/Web/spread/subsguru/www/tmp/cache/twigView-i18n-extract/3f/3fbc5bdde8b892b2cce3dba3ea49fe6b1b1370d1fee98a8f30d7b7a9aada0cc7.php:74
 msgid "{0} payments are ignored in your selection because they are not SEPA payments"
 msgstr ""
 
-#: /Volumes/Mars/Web/spread/subsguru/www/tmp/cache/twigView-i18n-extract/0b/0bcc00657fa29e8a54dc9acc018ba113c76a3ca9ddd0b926374abe4b34b55b7e.php:85
+#: /Volumes/Mars/Web/spread/subsguru/www/tmp/cache/twigView-i18n-extract/3f/3fbc5bdde8b892b2cce3dba3ea49fe6b1b1370d1fee98a8f30d7b7a9aada0cc7.php:101
 msgid "You have selected {0} SEPA payment{1}"
 msgstr ""
 
-#: /Volumes/Mars/Web/spread/subsguru/www/tmp/cache/twigView-i18n-extract/0b/0bcc00657fa29e8a54dc9acc018ba113c76a3ca9ddd0b926374abe4b34b55b7e.php:90
+#: /Volumes/Mars/Web/spread/subsguru/www/tmp/cache/twigView-i18n-extract/3f/3fbc5bdde8b892b2cce3dba3ea49fe6b1b1370d1fee98a8f30d7b7a9aada0cc7.php:106
 msgid "Please check export types in the list then proceed to your export"
 msgstr ""
 
-#: /Volumes/Mars/Web/spread/subsguru/www/tmp/cache/twigView-i18n-extract/0b/0bcc00657fa29e8a54dc9acc018ba113c76a3ca9ddd0b926374abe4b34b55b7e.php:94
+#: /Volumes/Mars/Web/spread/subsguru/www/tmp/cache/twigView-i18n-extract/3f/3fbc5bdde8b892b2cce3dba3ea49fe6b1b1370d1fee98a8f30d7b7a9aada0cc7.php:110
 msgid "Exported file will contains all payments listed below"
 msgstr ""
 
-#: /Volumes/Mars/Web/spread/subsguru/www/tmp/cache/twigView-i18n-extract/0b/0bcc00657fa29e8a54dc9acc018ba113c76a3ca9ddd0b926374abe4b34b55b7e.php:119
+#: /Volumes/Mars/Web/spread/subsguru/www/tmp/cache/twigView-i18n-extract/3f/3fbc5bdde8b892b2cce3dba3ea49fe6b1b1370d1fee98a8f30d7b7a9aada0cc7.php:135
 msgid "Customer"
 msgstr ""
 
-#: /Volumes/Mars/Web/spread/subsguru/www/tmp/cache/twigView-i18n-extract/0b/0bcc00657fa29e8a54dc9acc018ba113c76a3ca9ddd0b926374abe4b34b55b7e.php:123
+#: /Volumes/Mars/Web/spread/subsguru/www/tmp/cache/twigView-i18n-extract/3f/3fbc5bdde8b892b2cce3dba3ea49fe6b1b1370d1fee98a8f30d7b7a9aada0cc7.php:139
 msgid "Invoice"
 msgstr ""
 
-#: /Volumes/Mars/Web/spread/subsguru/www/tmp/cache/twigView-i18n-extract/0b/0bcc00657fa29e8a54dc9acc018ba113c76a3ca9ddd0b926374abe4b34b55b7e.php:127
+#: /Volumes/Mars/Web/spread/subsguru/www/tmp/cache/twigView-i18n-extract/3f/3fbc5bdde8b892b2cce3dba3ea49fe6b1b1370d1fee98a8f30d7b7a9aada0cc7.php:143
 msgid "Amount"
 msgstr ""
 
-#: /Volumes/Mars/Web/spread/subsguru/www/tmp/cache/twigView-i18n-extract/0b/0bcc00657fa29e8a54dc9acc018ba113c76a3ca9ddd0b926374abe4b34b55b7e.php:131
-msgid "Is first payment"
+#: /Volumes/Mars/Web/spread/subsguru/www/tmp/cache/twigView-i18n-extract/3f/3fbc5bdde8b892b2cce3dba3ea49fe6b1b1370d1fee98a8f30d7b7a9aada0cc7.php:147
+msgid "First"
 msgstr ""
 
-#: /Volumes/Mars/Web/spread/subsguru/www/tmp/cache/twigView-i18n-extract/0b/0bcc00657fa29e8a54dc9acc018ba113c76a3ca9ddd0b926374abe4b34b55b7e.php:135
-msgid "Type"
+#: /Volumes/Mars/Web/spread/subsguru/www/tmp/cache/twigView-i18n-extract/3f/3fbc5bdde8b892b2cce3dba3ea49fe6b1b1370d1fee98a8f30d7b7a9aada0cc7.php:151
+msgid "Export type"
 msgstr ""
 
-#: /Volumes/Mars/Web/spread/subsguru/www/tmp/cache/twigView-i18n-extract/0b/0bcc00657fa29e8a54dc9acc018ba113c76a3ca9ddd0b926374abe4b34b55b7e.php:139
-msgid "Status"
+#: /Volumes/Mars/Web/spread/subsguru/www/tmp/cache/twigView-i18n-extract/3f/3fbc5bdde8b892b2cce3dba3ea49fe6b1b1370d1fee98a8f30d7b7a9aada0cc7.php:155
+msgid "Payment status"
 msgstr ""
 
-#: /Volumes/Mars/Web/spread/subsguru/www/tmp/cache/twigView-i18n-extract/0b/0bcc00657fa29e8a54dc9acc018ba113c76a3ca9ddd0b926374abe4b34b55b7e.php:219
+#: /Volumes/Mars/Web/spread/subsguru/www/tmp/cache/twigView-i18n-extract/3f/3fbc5bdde8b892b2cce3dba3ea49fe6b1b1370d1fee98a8f30d7b7a9aada0cc7.php:265
 msgid "Ready"
 msgstr ""
 
-#: /Volumes/Mars/Web/spread/subsguru/www/tmp/cache/twigView-i18n-extract/0b/0bcc00657fa29e8a54dc9acc018ba113c76a3ca9ddd0b926374abe4b34b55b7e.php:228
+#: /Volumes/Mars/Web/spread/subsguru/www/tmp/cache/twigView-i18n-extract/3f/3fbc5bdde8b892b2cce3dba3ea49fe6b1b1370d1fee98a8f30d7b7a9aada0cc7.php:274
 msgid "Exported on {0}"
 msgstr ""
 
-#: /Volumes/Mars/Web/spread/subsguru/www/tmp/cache/twigView-i18n-extract/0b/0bcc00657fa29e8a54dc9acc018ba113c76a3ca9ddd0b926374abe4b34b55b7e.php:232
+#: /Volumes/Mars/Web/spread/subsguru/www/tmp/cache/twigView-i18n-extract/3f/3fbc5bdde8b892b2cce3dba3ea49fe6b1b1370d1fee98a8f30d7b7a9aada0cc7.php:278
 msgid "Already exported !"
 msgstr ""
 
-#: /Volumes/Mars/Web/spread/subsguru/www/tmp/cache/twigView-i18n-extract/0b/0bcc00657fa29e8a54dc9acc018ba113c76a3ca9ddd0b926374abe4b34b55b7e.php:241
-msgid "Payment not ready"
+#: /Volumes/Mars/Web/spread/subsguru/www/tmp/cache/twigView-i18n-extract/3f/3fbc5bdde8b892b2cce3dba3ea49fe6b1b1370d1fee98a8f30d7b7a9aada0cc7.php:287
+msgid "Will not be exported"
 msgstr ""
 
-#: /Volumes/Mars/Web/spread/subsguru/www/tmp/cache/twigView-i18n-extract/0b/0bcc00657fa29e8a54dc9acc018ba113c76a3ca9ddd0b926374abe4b34b55b7e.php:264
+#: /Volumes/Mars/Web/spread/subsguru/www/tmp/cache/twigView-i18n-extract/3f/3fbc5bdde8b892b2cce3dba3ea49fe6b1b1370d1fee98a8f30d7b7a9aada0cc7.php:310
 msgid "Export all"
 msgstr ""
 
-#: /Volumes/Mars/Web/spread/subsguru/www/tmp/cache/twigView-i18n-extract/0b/0bcc00657fa29e8a54dc9acc018ba113c76a3ca9ddd0b926374abe4b34b55b7e.php:271
+#: /Volumes/Mars/Web/spread/subsguru/www/tmp/cache/twigView-i18n-extract/3f/3fbc5bdde8b892b2cce3dba3ea49fe6b1b1370d1fee98a8f30d7b7a9aada0cc7.php:317
 msgid "Toggle Dropdown"
 msgstr ""
 
-#: /Volumes/Mars/Web/spread/subsguru/www/tmp/cache/twigView-i18n-extract/0b/0bcc00657fa29e8a54dc9acc018ba113c76a3ca9ddd0b926374abe4b34b55b7e.php:277;281
+#: /Volumes/Mars/Web/spread/subsguru/www/tmp/cache/twigView-i18n-extract/3f/3fbc5bdde8b892b2cce3dba3ea49fe6b1b1370d1fee98a8f30d7b7a9aada0cc7.php:323;327
 msgid "Export {0} only"
 msgstr ""
 
