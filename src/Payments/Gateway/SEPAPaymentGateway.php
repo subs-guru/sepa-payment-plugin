@@ -24,6 +24,9 @@ class SEPAPaymentGateway extends AbstractPaymentGateway
     /** Status "Ready for export" */
     const STATUS_READY = 'ready';
 
+    /** Status "Exported, waiting for payment" */
+    const STATUS_EXPORTED = 'exported';
+
     /**
      * {@inheritDoc}
      */
@@ -54,8 +57,8 @@ class SEPAPaymentGateway extends AbstractPaymentGateway
     public function getIntermediateStatuses()
     {
         return [
-            'ready' => __d('SubsGuru/SEPA', "Waiting for export"),
-            'exported' => __d('SubsGuru/SEPA', "Waiting for payment")
+            static::STATUS_READY => __d('SubsGuru/SEPA', "Waiting for export"),
+            static::STATUS_EXPORTED => __d('SubsGuru/SEPA', "Waiting for payment")
         ];
     }
 

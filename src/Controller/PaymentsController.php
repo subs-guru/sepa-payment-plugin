@@ -63,8 +63,9 @@ class PaymentsController extends AbstractPaymentGatewayController
         // Creating all XML nodes for each payment
         foreach ($payments as $payment) {
             $paymentName = str_replace('-', '', $payment->id);
+            $paymentStatus = $payment->getCurrentStatus()->name;
 
-            if (!isset($this->request->data['type-' . $payment->id])) {
+            if (!isset($this->request->data['type-' . $payment->id]) || $paymentStatus != SEPAPaymentGateway::STATUS_READY) {
                 $payment->__ignore = true;
                 continue;
             }
@@ -160,6 +161,11 @@ class PaymentsController extends AbstractPaymentGatewayController
             $this->response->header('Content-Length', filesize($file));
             $this->response->header('Content-Disposition', 'attachment; filename="' . basename($file) . '"');
         } else {
+            if (empty($sepaXml)) {
+                $this->Flash->warning(__d('SubsGuru/SEPA', "Nothing to export."));
+                return $this->redirect($this->referer());
+            }
+
             // Creating ZIP file
             $file = SEPA_XML_FOLDER . '/sepa-exports-' . date('Y-m-d-H\hh') . '-' . uniqid() .'.zip';
 
@@ -194,10 +200,9 @@ class PaymentsController extends AbstractPaymentGatewayController
                 }
 
                 $payment->updateStatus(
-                    'exported',
+                    SEPAPaymentGateway::STATUS_EXPORTED,
                     __d('SubsGuru/SEPA', "Exported into file `{0}`", basename($file)),
-                    ['filename' => basename($file)],
-                    true
+                    ['filename' => basename($file)]
                 );
 
                 TableRegistry::get('Payments')->save($payment);

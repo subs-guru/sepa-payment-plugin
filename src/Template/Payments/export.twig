@@ -51,16 +51,17 @@
                             <th class="customer">{{ __d('SubsGuru/SEPA', "Customer") }}</th>
                             <th class="invoice-ref">{{ __d('SubsGuru/SEPA', "Invoice") }}</th>
                             <th class="amount">{{ __d('SubsGuru/SEPA', "Amount") }}</th>
-                            <th class="is-first">{{ __d('SubsGuru/SEPA', "Is first payment") }}</th>
-                            <th class="type">{{ __d('SubsGuru/SEPA', "Type") }}</th>
-                            <th class="status">{{ __d('SubsGuru/SEPA', "Status") }}</th>
+                            <th class="is-first">{{ __d('SubsGuru/SEPA', "First") }}</th>
+                            <th class="type">{{ __d('SubsGuru/SEPA', "Export type") }}</th>
+                            <th class="status">{{ __d('SubsGuru/SEPA', "Payment status") }}</th>
                         </tr>
                     </thead>
                     <tbody>
                         {% for payment in payments %}
                             {% set isFirst = (paymentsCounters|default is empty) or (paymentsCounters[payment.payment_mean_id] < 1) %}
-                            {% set isReady = payment.is(constant('SubsGuru\\SEPA\\Payments\\Gateway\\SEPAPaymentGateway::STATUS_READY')) %}
-                            <tr>
+                            {% set isReady = payment.hasStatus(constant('SubsGuru\\SEPA\\Payments\\Gateway\\SEPAPaymentGateway::STATUS_READY')) %}
+                            {% set hadBeenExported = payment.hadStatus(constant('SubsGuru\\SEPA\\Payments\\Gateway\\SEPAPaymentGateway::STATUS_EXPORTED')) %}
+                            <tr class="{{ not isReady and not hadBeenExported ? 'ignored' }}">
                                 <td class="customer">
                                     <a href="{{ Url.build({ 'plugin':null, 'controller':'Customers', 'action':'view', 0:payment.payment_mean.customer.id }) }}" class="trigger-tipsy tipsy-s" title=" {{ payment.payment_mean.customer.org_legal_name }} - Click to view" target="_blank">
                                         {{ payment.payment_mean.customer.org_business_name }}
@@ -97,14 +98,14 @@
                                     {% if isReady %}
                                         <i class="fa fa-check-circle text-green"></i>
                                         {{ __d('SubsGuru/SEPA', 'Ready') }}
-                                    {% elseif payment.isSuccessful() or payment.getCurrentStatus().name == 'exported' %}
+                                    {% elseif hadBeenExported %}
                                         <i class="fa fa-warning text-orange"></i>
                                         <span class="trigger-tipsy tipsy-s" title="{{ __d('SubsGuru/SEPA', "Exported on {0}", payment.payment_dt|default('unknown')) }}">
                                             {{ __d('SubsGuru/SEPA', 'Already exported !') }}
                                         </span>
                                     {% else %}
                                         <i class="fa fa-times-circle text-red"></i>
-                                        {{ __d('SubsGuru/SEPA', 'Payment not ready') }}
+                                        {{ __d('SubsGuru/SEPA', 'Will not be exported') }}
                                     {% endif %}
                                 </td>
                             </tr>
