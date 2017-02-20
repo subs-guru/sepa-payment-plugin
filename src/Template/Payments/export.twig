@@ -60,6 +60,7 @@
                         {% for payment in payments %}
                             {% set isFirst = (paymentsCounters|default is empty) or (paymentsCounters[payment.payment_mean_id] < 1) %}
                             {% set isReady = payment.hasStatus(constant('SubsGuru\\SEPA\\Payments\\Gateway\\SEPAPaymentGateway::STATUS_READY')) %}
+                            {% set isExported = payment.hasStatus(constant('SubsGuru\\SEPA\\Payments\\Gateway\\SEPAPaymentGateway::STATUS_EXPORTED')) %}
                             {% set hadBeenExported = payment.hadStatus(constant('SubsGuru\\SEPA\\Payments\\Gateway\\SEPAPaymentGateway::STATUS_EXPORTED')) %}
                             <tr class="{{ not isReady and not hadBeenExported ? 'ignored' }}">
                                 <td class="customer">
@@ -95,7 +96,7 @@
                                     })|raw }}
                                 </td>
                                 <td class="status">
-                                    {% if isReady %}
+                                    {% if isReady or isExported %}
                                         <i class="fa fa-check-circle text-green"></i>
                                         {{ __d('SubsGuru/SEPA', 'Ready') }}
                                     {% elseif hadBeenExported %}
