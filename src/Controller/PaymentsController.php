@@ -65,7 +65,7 @@ class PaymentsController extends AbstractPaymentGatewayController
             $paymentName = str_replace('-', '', $payment->id);
             $paymentStatus = $payment->getCurrentStatus()->name;
 
-            if (!isset($this->request->data['type-' . $payment->id]) || $paymentStatus != SEPAPaymentGateway::STATUS_READY || $paymentStatus != SEPAPaymentGateway::STATUS_EXPORTED) {
+            if (!isset($this->request->data['type-' . $payment->id]) || !in_array($paymentStatus, [SEPAPaymentGateway::STATUS_READY, $paymentStatus != SEPAPaymentGateway::STATUS_EXPORTED])) {
                 $payment->__ignore = true;
                 continue;
             }

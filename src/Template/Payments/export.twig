@@ -96,10 +96,10 @@
                                     })|raw }}
                                 </td>
                                 <td class="status">
-                                    {% if isReady or isExported %}
+                                    {% if isReady %}
                                         <i class="fa fa-check-circle text-green"></i>
                                         {{ __d('SubsGuru/SEPA', 'Ready') }}
-                                    {% elseif hadBeenExported %}
+                                    {% elseif isExported or hadBeenExported %}
                                         <i class="fa fa-warning text-orange"></i>
                                         <span class="trigger-tipsy tipsy-s" title="{{ __d('SubsGuru/SEPA', "Exported on {0}", payment.payment_dt|default('unknown')) }}">
                                             {{ __d('SubsGuru/SEPA', 'Already exported !') }}
