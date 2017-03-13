@@ -86,8 +86,37 @@ class SEPAPaymentGateway extends AbstractPaymentGateway
                     'controller' => 'ManualPaymentManagement',
                     'action' => 'set-as-paid'
                 ])
+            ],
+            'rejected' => [
+                'title' => __d('SubsGuru/SEPA', "Rejected by bank"),
+                'icon' => 'exclamation-circle',
+                'color' => 'red',
+                'url' => Router::url([
+                    'plugin' => 'SubsGuru/SEPA',
+                    'controller' => 'Payments',
+                    'action' => 'set-as-rejected'
+                ])
             ]
         ];
+    }
+
+    public function getPossibleActionsForPayment(Payment $payment)
+    {
+        $actions = $this->getPossibleActions();        
+
+        if (!$payment->hadStatus(static::STATUS_READY) || $payment->isSuccessful() || $payment->hasError()) {
+            $actions['export']['disabled'] = true;
+        }
+
+        if (!$payment->hasStatus(static::STATUS_EXPORTED)) {
+            $actions['paid']['disabled'] = true;
+        }
+
+        if (!$payment->isSuccessful()) {
+            $actions['rejected']['disabled'] = true;
+        }
+
+        return $actions;
     }
 
     /**

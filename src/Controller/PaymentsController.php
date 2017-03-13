@@ -47,6 +47,40 @@ class PaymentsController extends AbstractPaymentGatewayController
         $this->set('debitsTypes', array_flip($debitsTypes));
     }
 
+    public function setAsRejected()
+    {
+        $payments = $this->queryPayments();
+        $gateway = $this->getPaymentGateway();
+
+        $ignored = clone $payments;
+        $ignored->where(['PaymentMeans.type !=' => $this->getPaymentGateway()->getName()]);
+
+        $filtered = clone $payments;
+        $filtered->where(['PaymentMeans.type' => $this->getPaymentGateway()->getName()]);
+
+        $ignoredCount = $ignored->count();
+        $filteredCount = $filtered->count();
+        $errorCount = 0;
+
+        foreach ($filtered as $payment) {
+            if ($gateway->canPaymentDo($payment, $this->getCurrentActionName())) {
+                if ($payment->updateStatus($gateway->getErrorStatus(), __d('SubsGuru/SEPA', "Rejected by bank"), ['rejected_by_bank' => 1], true)) {
+                    TableRegistry::get('Payments')->save($payment);
+                } else {
+                    $errorCount++;
+                }
+            }
+        }
+
+        $this->Flash->{ $errorCount > 0 || $ignoredCount > 0 ? 'warning' : 'success' }(
+            ($filteredCount - $errorCount <= 1)
+                ? __d('SubsGuru/SEPA', "{0} updated payment", $filteredCount)
+                : __d('SubsGuru/SEPA', "{0} updated payments", $filteredCount)
+        );
+
+        return $this->redirect($this->getReferer());
+    }
+
     /**
      * Export processing (POST ONLY).
      *
