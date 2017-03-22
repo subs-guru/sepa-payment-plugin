@@ -168,8 +168,20 @@ class PaymentsController extends AbstractPaymentGatewayController
         $sepaXml = array();
 
         foreach ($sepaDocuments as $sepaType => $sepaDocument) {
-            if (!$this->validateDocument($xml = $sepaDocument->asXml())) {
-                throw new \Exception("Cannot validate XML document for type {$sepaType} (format: {$config['format']})");
+            $validation = $this->validateDocument($xml = $sepaDocument->asXml());
+
+            if ($validation['result'] !== true) {
+                $errorsHTML = '';
+                
+                foreach ($validation['errors'] as $error) {
+                    $errorsHTML .= " - " . trim($error->message) . "\n";
+                }
+
+                $this->Flash->error(nl2br(trim(__d('SubsGuru/SEPA', "
+                    <strong>XML validation error</strong>
+                    <small>{0}</small>
+                ", trim($errorsHTML)))));
+                return $this->redirect($this->referer());
             } else {
                 $sepaXml[$sepaType] = $xml;
             }
@@ -343,6 +355,14 @@ class PaymentsController extends AbstractPaymentGatewayController
 
         $validationFile = (is_file($pain)) ? $pain : dirname(__DIR__) . '/' . $pain . '.xsd';
 
-        return $domdoc->schemaValidate($validationFile);
+        libxml_use_internal_errors(true);
+
+        $result = $domdoc->schemaValidate($validationFile);
+        $errors = libxml_get_errors();
+
+        return [
+            'result' => $result,
+            'errors' => $errors   
+        ];
     }
 }
