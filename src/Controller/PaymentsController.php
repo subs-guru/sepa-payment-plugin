@@ -177,10 +177,8 @@ class PaymentsController extends AbstractPaymentGatewayController
                     $errorsHTML .= " - " . trim($error->message) . "\n";
                 }
 
-                $this->Flash->error(nl2br(trim(__d('SubsGuru/SEPA', "
-                    <strong>XML validation error</strong>
-                    <small>{0}</small>
-                ", trim($errorsHTML)))));
+                $this->Flash->error(nl2br(__d('SubsGuru/SEPA', "<strong>XML validation error</strong>\n<small>{0}</small>", trim($errorsHTML))));
+
                 return $this->redirect($this->referer());
             } else {
                 $sepaXml[$sepaType] = $xml;
