@@ -65,6 +65,18 @@ class SEPAPaymentGateway extends AbstractPaymentGateway
     /**
      * {@inheritDoc}
      */
+    public function isConsideredComplete($status)
+    {
+        if (parent::isConsideredComplete($status) || $status == static::STATUS_EXPORTED) {
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public function getPossibleActions()
     {
         return [
