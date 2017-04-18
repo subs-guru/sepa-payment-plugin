@@ -124,10 +124,6 @@ class SEPAPaymentGateway extends AbstractPaymentGateway
             $actions['paid']['disabled'] = true;
         }
 
-        if (!$payment->isSuccessful()) {
-            $actions['rejected']['disabled'] = true;
-        }
-
         return $actions;
     }
 
