@@ -1,12 +1,12 @@
 <?php
 namespace SubsGuru\SEPA\Payments\Gateway;
 
-use App\Model\Entity\Payment;
-use App\Model\Entity\PaymentMean;
-use App\Model\Entity\PaymentMeanConfig;
-use App\Payments\AbstractPaymentGateway;
 use Cake\Routing\Router;
 use Digitick\Sepa\PaymentInformation;
+use SubsGuru\Core\Model\Entity\Payment;
+use SubsGuru\Core\Model\Entity\PaymentMean;
+use SubsGuru\Core\Model\Entity\PaymentMeanConfig;
+use SubsGuru\Core\Payments\AbstractPaymentGateway;
 
 defined('SEPA_XML_FOLDER')?: define('SEPA_XML_FOLDER', ROOT . '/tmp/sepa');
 defined('SEPA_XML_FOLDER_UMASK')?: define('SEPA_XML_FOLDER_UMASK', 0775);

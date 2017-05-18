@@ -1,6 +1,5 @@
 <?php
-
-use App\Payments\PaymentGatewayRepository;
+use SubsGuru\Core\Payments\PaymentGatewayRepository;
 
 //
 // Registering SEPA payment handler

@@ -1,13 +1,13 @@
 <?php
 namespace SubsGuru\SEPA\Controller;
 
-use App\Controller\AbstractPaymentGatewayController;
 use Cake\Core\Configure;
 use Cake\I18n\Time;
 use Cake\Network\Exception\InternalErrorException;
 use Cake\ORM\TableRegistry;
 use Digitick\Sepa\PaymentInformation;
 use Digitick\Sepa\TransferFile\Factory\TransferFileFacadeFactory;
+use SubsGuru\Core\Controller\AbstractPaymentGatewayController;
 use SubsGuru\SEPA\Payments\Gateway\SEPAPaymentGateway;
 use ZipArchive;
 
