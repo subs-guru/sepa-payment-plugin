@@ -8,8 +8,8 @@ use App\Payments\AbstractPaymentGateway;
 use Cake\Routing\Router;
 use Digitick\Sepa\PaymentInformation;
 
-defined('SEPA_XML_FOLDER')?: define('SEPA_XML_FOLDER', ROOT . '/tmp/sepa');
-defined('SEPA_XML_FOLDER_UMASK')?: define('SEPA_XML_FOLDER_UMASK', 0775);
+defined('SEPA_XML_FOLDER') ?: define('SEPA_XML_FOLDER', ROOT . '/tmp/sepa');
+defined('SEPA_XML_FOLDER_UMASK') ?: define('SEPA_XML_FOLDER_UMASK', 0775);
 
 /**
  * Cheque payment handler.
@@ -20,6 +20,9 @@ class SEPAPaymentGateway extends AbstractPaymentGateway
 {
     /** Default SEPA XML format/version */
     const DEFAULT_PAIN = 'pain.008.001.02';
+
+    /** Allowed PAIN values */
+    const SUPPORTED_PAIN_VERSIONS = ['pain.008.001.03', 'pain.008.001.02'];
 
     /** Status "Ready for export" */
     const STATUS_READY = 'ready';
@@ -114,7 +117,7 @@ class SEPAPaymentGateway extends AbstractPaymentGateway
 
     public function getPossibleActionsForPayment(Payment $payment)
     {
-        $actions = $this->getPossibleActions();        
+        $actions = $this->getPossibleActions();
 
         if (!$payment->hadStatus(static::STATUS_READY) || $payment->isSuccessful() || $payment->hasError()) {
             $actions['export']['disabled'] = true;
@@ -485,6 +488,7 @@ class SEPAPaymentGateway extends AbstractPaymentGateway
      * Method used to display IBAN on screen respecting customer privacy.
      *
      * @param string $ibanCode IBAN to obfuscate
+     *
      * @return string Obfuscated IBAN
      */
     public function displayIBAN($ibanCode)
@@ -503,7 +507,8 @@ class SEPAPaymentGateway extends AbstractPaymentGateway
     /**
      * Full IBAN validator.
      *
-     * @param  string $iban Full IBAN to valiate
+     * @param string $iban Full IBAN to valiate
+     *
      * @return bool `true` if valid
      */
     public function validateIBAN($iban)
@@ -514,7 +519,8 @@ class SEPAPaymentGateway extends AbstractPaymentGateway
     /**
      * IBAN code validator.
      *
-     * @param  string $iban IBAN code to valiate
+     * @param string $iban IBAN code to valiate
+     *
      * @return bool `true` if valid
      */
     public function validateIBANCode($ibanCode, $form)
@@ -533,7 +539,8 @@ class SEPAPaymentGateway extends AbstractPaymentGateway
     /**
      * BIC validator.
      *
-     * @param  string $bic BIC to valiate
+     * @param string $bic BIC to valiate
+     *
      * @return bool `true` if valid
      */
     public function validateBIC($bic)
@@ -546,13 +553,12 @@ class SEPAPaymentGateway extends AbstractPaymentGateway
     /**
      * Validate XML format version.
      *
-     * @param  string $pain version
+     * @param string $pain version
+     *
      * @return bool `true` if recognized
      */
     public function validatePAIN($pain)
     {
-        return in_array($pain, [
-            'pain.008.001.03', 'pain.008.001.02'
-        ]);
+        return in_array($pain, static::SUPPORTED_PAIN_VERSIONS);
     }
 }
