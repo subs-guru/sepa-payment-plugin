@@ -78,6 +78,8 @@ class PaymentsController extends AbstractPaymentGatewayController
                 : __d('SubsGuru/SEPA', "{0} updated payments", $filteredCount)
         );
 
+        $this->clearSelection();
+
         return $this->redirect($this->getReferer());
     }
 
@@ -233,6 +235,8 @@ class PaymentsController extends AbstractPaymentGatewayController
             $this->response->header('Content-Length', filesize($file));
             $this->response->header('Content-Disposition', 'attachment; filename="' . basename($file) . '"');
         }
+
+        $this->clearSelection();
 
         // Streaming file
         $this->response->body(function () use ($file, $payments) {

@@ -27,7 +27,7 @@
         {% if referer is not empty %}
             <a href="{{ referer }}" class="btn btn-default btn-xs" style="margin-bottom: 10px">
                 <i class="fa fa-arrow-left"></i>&nbsp;
-                {{ __('Go back') }}
+                {{ __d('SubsGuru/SEPA', "Go back") }}
             </a>
         {% endif %}
 
@@ -131,7 +131,7 @@
             </ul>
         </div>
         <a href="{{ referer }}" class="cancel">
-            Cancel
+            {{ __('Cancel') }}
         </a>
 
         {{ Form.end()|raw }}
