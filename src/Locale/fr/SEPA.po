@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2017-08-30 16:37+0200\n"
-"PO-Revision-Date: 2017-08-30 16:38+0200\n"
+"POT-Creation-Date: 2017-08-30 14:36+0000\n"
+"PO-Revision-Date: 2017-11-09 17:57+0100\n"
 "Last-Translator: \n"
 "Language-Team: EMAIL@ADDRESS\n"
 "Language: fr_FR\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Poedit 2.0.1\n"
+"X-Generator: Poedit 2.0.4\n"
 
 #: /Users/julien/Sites/subsguru/www/Controller/PaymentsController.php:67
 #: /Users/julien/Sites/subsguru/www/Payments/Gateway/SEPAPaymentGateway.php:106
@@ -278,6 +278,10 @@ msgstr "Dérouler le menu"
 #: /Users/julien/Sites/subsguru/www/tmp/cache/twigView-i18n-extract/8c/8c3c3ac11ef52c74bf4aa3dd3d3dba7534c95433d5b3b87417dfd5962e8c8d6d.php:326;330
 msgid "Export {0} only"
 msgstr "Exporter {0} seul"
+
+#: /Users/julien/Sites/subsguru/www/tmp/cache/twigView-i18n-extract/8c/8c3c3ac11ef52c74bf4aa3dd3d3dba7534c95433d5b3b87417dfd5962e8c8d6d.php:326;330
+msgid "Levy notification for your subscription to {0}"
+msgstr "Notification de prélèvement pour votre abonnement {0}"
 
 #~ msgid "<strong>XML validation error</strong><small>{0}</small>"
 #~ msgstr "<strong>Erreur de validation XML</strong><small>{0}</small>"

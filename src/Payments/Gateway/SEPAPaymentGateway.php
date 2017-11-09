@@ -100,17 +100,8 @@ class SEPAPaymentGateway extends AbstractPaymentGateway
                     'plugin' => null,
                     'controller' => 'ManualPaymentManagement',
                     'action' => 'set-as-paid'
-                ])
-            ],
-            'rejected' => [
-                'title' => __d('SubsGuru/SEPA', "Rejected by bank"),
-                'icon' => 'exclamation-circle',
-                'color' => 'red',
-                'url' => Router::url([
-                    'plugin' => 'SubsGuru/SEPA',
-                    'controller' => 'Payments',
-                    'action' => 'set-as-rejected'
-                ])
+                ]),
+                'trigger-paid-modal' => true
             ]
         ];
     }
@@ -560,5 +551,31 @@ class SEPAPaymentGateway extends AbstractPaymentGateway
     public function validatePAIN($pain)
     {
         return in_array($pain, static::SUPPORTED_PAIN_VERSIONS);
+    }
+
+    /**
+     * Notification sent when a payment hits an "exported" status with the SEPA Gateway
+     *
+     * @param \App\Model\Entity\PaymentMean $paymentMean Instance of the payment mean the payment was made with.
+     * @param \App\Model\Entity\Payment $payment Instance of the payment we are notifying about.
+     * @param string $status String status of the payment.
+     * @return void
+     */
+    public function sendNotificationOnExported(PaymentMean $paymentMean, Payment $payment, $status)
+    {
+        $mailer = $this->getMailer('SubsGuru/SEPA.SEPANotifications');
+        $mailer->send($status, [$paymentMean, $payment]);
+    }
+
+    /**
+     * Notification sent when a payment hits an "success" status with the SEPA Gateway
+     *
+     * @param \App\Model\Entity\PaymentMean $paymentMean Instance of the payment mean the payment was made with.
+     * @param \App\Model\Entity\Payment $payment Instance of the payment we are notifying about.
+     * @param string $status String status of the payment.
+     * @return void
+     */
+    public function sendNotificationOnSuccess(PaymentMean $paymentMean, Payment $payment, $status)
+    {
     }
 }
