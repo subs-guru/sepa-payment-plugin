@@ -267,3 +267,7 @@ msgstr ""
 msgid "Export {0} only"
 msgstr ""
 
+#: /Users/julien/Sites/subsguru/www/tmp/cache/twigView-i18n-extract/8c/8c3c3ac11ef52c74bf4aa3dd3d3dba7534c95433d5b3b87417dfd5962e8c8d6d.php:326;330
+msgid "Levy notification for your subscription to {0}"
+msgstr ""
+
