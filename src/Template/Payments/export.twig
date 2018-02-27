@@ -27,7 +27,7 @@
         {% if referer is not empty %}
             <a href="{{ referer }}" class="btn btn-default btn-xs" style="margin-bottom: 10px">
                 <i class="fa fa-arrow-left"></i>&nbsp;
-                {{ __('Go back') }}
+                {{ __d('SubsGuru/SEPA', "Go back") }}
             </a>
         {% endif %}
 
@@ -70,7 +70,7 @@
                                 </td>
                                 <td class="invoice-ref">
                                     {% for invoice in payment.invoices %}
-                                        <a href="{{ Url.build({ 'controller':'Invoices', 'action':'view', 0:invoice.id}) }}" class="trigger-tipsy tipsy-s" title="{{ invoice.period_info }}" target="_blank">{{ invoicesMacros.num(invoice) }}</a>
+                                        <a href="{{ Url.build({ 'plugin':null, 'controller':'Invoices', 'action':'view', 0:invoice.id}) }}" class="trigger-tipsy tipsy-s" title="{{ invoice.period_info }}" target="_blank">{{ invoicesMacros.num(invoice) }}</a>
                                     {% else %}
                                         <span class="text-muted">No invoice</span>
                                     {% endfor %}
@@ -131,7 +131,7 @@
             </ul>
         </div>
         <a href="{{ referer }}" class="cancel">
-            Cancel
+            {{ __('Cancel') }}
         </a>
 
         {{ Form.end()|raw }}

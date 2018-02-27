@@ -78,6 +78,8 @@ class PaymentsController extends AbstractPaymentGatewayController
                 : __d('SubsGuru/SEPA', "{0} updated payments", $filteredCount)
         );
 
+        $this->clearSelection();
+
         return $this->redirect($this->getReferer());
     }
 
@@ -96,7 +98,8 @@ class PaymentsController extends AbstractPaymentGatewayController
 
         // Creating all XML nodes for each payment
         foreach ($payments as $payment) {
-            $paymentName = str_replace('-', '', $payment->id);
+            $shortId = str_replace('-', '', $payment->id);
+            $paymentName = $shortId;
             $paymentStatus = $payment->getCurrentStatus()->name;
 
             if (!isset($this->request->data['type-' . $payment->id]) || !in_array($paymentStatus, [SEPAPaymentGateway::STATUS_READY, SEPAPaymentGateway::STATUS_EXPORTED])) {
@@ -120,7 +123,7 @@ class PaymentsController extends AbstractPaymentGatewayController
             if (!isset($sepaDocuments[$type])) {
                 $sepaDocuments[$type] = TransferFileFacadeFactory::createDirectDebit(
                     $documentName,
-                    $config['compagny'],
+                    $this->sanitizeForXml($config['compagny']),
                     $config['format']
                 );
             }
@@ -133,7 +136,7 @@ class PaymentsController extends AbstractPaymentGatewayController
             $sepaDocuments[$type]->addPaymentInfo($paymentName,
                 [
                     'id'                    => $paymentName,
-                    'creditorName'          => $config['compagny'],
+                    'creditorName'          => $this->sanitizeForXml($config['compagny']),
                     'creditorAccountIBAN'   => strtoupper($config['iban']),
                     'creditorAgentBIC'      => strtoupper(str_pad($config['bic'], 11, 'X')),
                     'creditorId'            => $config['ics'],
@@ -156,7 +159,7 @@ class PaymentsController extends AbstractPaymentGatewayController
                     'amount'                => $payment->getAmount(),
                     'debtorIban'            => strtoupper($iban),
                     'debtorBic'             => strtoupper(str_pad($parameters['bic'], 11, 'X')),
-                    'debtorName'            => $debtorName,
+                    'debtorName'            => $this->sanitizeForXml($debtorName),
                     'debtorMandate'         => (!empty($parameters['mandate_id'])) ? $parameters['mandate_id'] : $defaultMandateID,
                     'debtorMandateSignDate' => (!empty($parameters['mandate_sign_date'])) ? $parameters['mandate_sign_date'] : $defaultMandateSignature,
                     'remittanceInformation' => $payment->id,
@@ -172,7 +175,7 @@ class PaymentsController extends AbstractPaymentGatewayController
 
             if ($validation['result'] !== true) {
                 $errorsHTML = '';
-                
+
                 foreach ($validation['errors'] as $error) {
                     $errorsHTML .= " - " . trim($error->message) . "\n";
                 }
@@ -232,6 +235,8 @@ class PaymentsController extends AbstractPaymentGatewayController
             $this->response->header('Content-Length', filesize($file));
             $this->response->header('Content-Disposition', 'attachment; filename="' . basename($file) . '"');
         }
+
+        $this->clearSelection();
 
         // Streaming file
         $this->response->body(function () use ($file, $payments) {
@@ -360,7 +365,15 @@ class PaymentsController extends AbstractPaymentGatewayController
 
         return [
             'result' => $result,
-            'errors' => $errors   
+            'errors' => $errors
         ];
+    }
+
+    private function sanitizeForXml($string)
+    {
+        $string = mb_ereg_replace('—', '-', $string);
+        $string = mb_ereg_replace('[^0-9a-zA-Z\-\_\s]+', '', $string);
+
+        return trim($string);
     }
 }

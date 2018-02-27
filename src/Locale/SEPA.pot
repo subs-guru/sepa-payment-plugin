@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2017-03-22 13:03+0000\n"
+"POT-Creation-Date: 2017-08-30 14:36+0000\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 
 #: /Users/julien/Sites/subsguru/www/Controller/PaymentsController.php:67
-#: /Users/julien/Sites/subsguru/www/Payments/Gateway/SEPAPaymentGateway.php:91
+#: /Users/julien/Sites/subsguru/www/Payments/Gateway/SEPAPaymentGateway.php:106
 msgid "Rejected by bank"
 msgstr ""
 
@@ -27,239 +27,247 @@ msgstr ""
 msgid "{0} updated payments"
 msgstr ""
 
-#: /Users/julien/Sites/subsguru/www/Controller/PaymentsController.php:180
+#: /Users/julien/Sites/subsguru/www/Controller/PaymentsController.php:181
 msgid "<strong>XML validation error</strong>\n<small>{0}</small>"
 msgstr ""
 
-#: /Users/julien/Sites/subsguru/www/Controller/PaymentsController.php:197
+#: /Users/julien/Sites/subsguru/www/Controller/PaymentsController.php:198
 msgid "No document matched selected type ({0}), nothing to export."
 msgstr ""
 
-#: /Users/julien/Sites/subsguru/www/Controller/PaymentsController.php:209
+#: /Users/julien/Sites/subsguru/www/Controller/PaymentsController.php:210
 msgid "Nothing to export."
 msgstr ""
 
-#: /Users/julien/Sites/subsguru/www/Controller/PaymentsController.php:248
+#: /Users/julien/Sites/subsguru/www/Controller/PaymentsController.php:251
 msgid "Exported into file `{0}`"
 msgstr ""
 
-#: /Users/julien/Sites/subsguru/www/Payments/Gateway/SEPAPaymentGateway.php:43
+#: /Users/julien/Sites/subsguru/www/Payments/Gateway/SEPAPaymentGateway.php:46
 msgid "SEPA"
 msgstr ""
 
-#: /Users/julien/Sites/subsguru/www/Payments/Gateway/SEPAPaymentGateway.php:51
+#: /Users/julien/Sites/subsguru/www/Payments/Gateway/SEPAPaymentGateway.php:54
 msgid "SEPA payment"
 msgstr ""
 
-#: /Users/julien/Sites/subsguru/www/Payments/Gateway/SEPAPaymentGateway.php:60
+#: /Users/julien/Sites/subsguru/www/Payments/Gateway/SEPAPaymentGateway.php:63
 msgid "Waiting for export"
 msgstr ""
 
-#: /Users/julien/Sites/subsguru/www/Payments/Gateway/SEPAPaymentGateway.php:61
+#: /Users/julien/Sites/subsguru/www/Payments/Gateway/SEPAPaymentGateway.php:64
 msgid "Waiting for payment"
 msgstr ""
 
-#: /Users/julien/Sites/subsguru/www/Payments/Gateway/SEPAPaymentGateway.php:72
+#: /Users/julien/Sites/subsguru/www/Payments/Gateway/SEPAPaymentGateway.php:87
 msgid "Export SEPA files"
 msgstr ""
 
-#: /Users/julien/Sites/subsguru/www/Payments/Gateway/SEPAPaymentGateway.php:81
+#: /Users/julien/Sites/subsguru/www/Payments/Gateway/SEPAPaymentGateway.php:96
 msgid "Set as paid"
 msgstr ""
 
-#: /Users/julien/Sites/subsguru/www/Payments/Gateway/SEPAPaymentGateway.php:130
+#: /Users/julien/Sites/subsguru/www/Payments/Gateway/SEPAPaymentGateway.php:141
 msgid "SEPA export format"
 msgstr ""
 
-#: /Users/julien/Sites/subsguru/www/Payments/Gateway/SEPAPaymentGateway.php:141;168
+#: /Users/julien/Sites/subsguru/www/Payments/Gateway/SEPAPaymentGateway.php:152;179
 msgid "IBAN format is incorrect"
 msgstr ""
 
-#: /Users/julien/Sites/subsguru/www/Payments/Gateway/SEPAPaymentGateway.php:147
+#: /Users/julien/Sites/subsguru/www/Payments/Gateway/SEPAPaymentGateway.php:158
 msgid "Force export type"
 msgstr ""
 
-#: /Users/julien/Sites/subsguru/www/Payments/Gateway/SEPAPaymentGateway.php:151
+#: /Users/julien/Sites/subsguru/www/Payments/Gateway/SEPAPaymentGateway.php:162
 msgid "Automatic (not forced)"
 msgstr ""
 
-#: /Users/julien/Sites/subsguru/www/Payments/Gateway/SEPAPaymentGateway.php:152
+#: /Users/julien/Sites/subsguru/www/Payments/Gateway/SEPAPaymentGateway.php:163
 msgid "recurring (forced)"
 msgstr ""
 
-#: /Users/julien/Sites/subsguru/www/Payments/Gateway/SEPAPaymentGateway.php:153
+#: /Users/julien/Sites/subsguru/www/Payments/Gateway/SEPAPaymentGateway.php:164
 msgid "first (forced)"
 msgstr ""
 
-#: /Users/julien/Sites/subsguru/www/Payments/Gateway/SEPAPaymentGateway.php:157
+#: /Users/julien/Sites/subsguru/www/Payments/Gateway/SEPAPaymentGateway.php:168
 msgid "Use this setting to force default export type"
 msgstr ""
 
-#: /Users/julien/Sites/subsguru/www/Payments/Gateway/SEPAPaymentGateway.php:161
+#: /Users/julien/Sites/subsguru/www/Payments/Gateway/SEPAPaymentGateway.php:172
 msgid "Creditor account IBAN"
 msgstr ""
 
-#: /Users/julien/Sites/subsguru/www/Payments/Gateway/SEPAPaymentGateway.php:174
+#: /Users/julien/Sites/subsguru/www/Payments/Gateway/SEPAPaymentGateway.php:185
 msgid "Creditor account BIC"
 msgstr ""
 
-#: /Users/julien/Sites/subsguru/www/Payments/Gateway/SEPAPaymentGateway.php:181;318
+#: /Users/julien/Sites/subsguru/www/Payments/Gateway/SEPAPaymentGateway.php:192;329
 msgid "BIC format is incorrect"
 msgstr ""
 
-#: /Users/julien/Sites/subsguru/www/Payments/Gateway/SEPAPaymentGateway.php:187
+#: /Users/julien/Sites/subsguru/www/Payments/Gateway/SEPAPaymentGateway.php:198
 msgid "Agent ICS"
 msgstr ""
 
-#: /Users/julien/Sites/subsguru/www/Payments/Gateway/SEPAPaymentGateway.php:194
+#: /Users/julien/Sites/subsguru/www/Payments/Gateway/SEPAPaymentGateway.php:205
 msgid "Compagny legal name"
 msgstr ""
 
-#: /Users/julien/Sites/subsguru/www/Payments/Gateway/SEPAPaymentGateway.php:201
+#: /Users/julien/Sites/subsguru/www/Payments/Gateway/SEPAPaymentGateway.php:212
 msgid "Compagny SIRET"
 msgstr ""
 
-#: /Users/julien/Sites/subsguru/www/Payments/Gateway/SEPAPaymentGateway.php:208
+#: /Users/julien/Sites/subsguru/www/Payments/Gateway/SEPAPaymentGateway.php:219
 msgid "Creditor TVA code"
 msgstr ""
 
-#: /Users/julien/Sites/subsguru/www/Payments/Gateway/SEPAPaymentGateway.php:215
+#: /Users/julien/Sites/subsguru/www/Payments/Gateway/SEPAPaymentGateway.php:226
 msgid "Compagny short description"
 msgstr ""
 
-#: /Users/julien/Sites/subsguru/www/Payments/Gateway/SEPAPaymentGateway.php:222
+#: /Users/julien/Sites/subsguru/www/Payments/Gateway/SEPAPaymentGateway.php:233
 msgid "Creditor address"
 msgstr ""
 
-#: /Users/julien/Sites/subsguru/www/Payments/Gateway/SEPAPaymentGateway.php:229
+#: /Users/julien/Sites/subsguru/www/Payments/Gateway/SEPAPaymentGateway.php:240
 msgid "Creditor postal code"
 msgstr ""
 
-#: /Users/julien/Sites/subsguru/www/Payments/Gateway/SEPAPaymentGateway.php:236
+#: /Users/julien/Sites/subsguru/www/Payments/Gateway/SEPAPaymentGateway.php:247
 msgid "Creditor city"
 msgstr ""
 
-#: /Users/julien/Sites/subsguru/www/Payments/Gateway/SEPAPaymentGateway.php:243
+#: /Users/julien/Sites/subsguru/www/Payments/Gateway/SEPAPaymentGateway.php:254
 msgid "Creditor country"
 msgstr ""
 
-#: /Users/julien/Sites/subsguru/www/Payments/Gateway/SEPAPaymentGateway.php:259
+#: /Users/julien/Sites/subsguru/www/Payments/Gateway/SEPAPaymentGateway.php:270
 msgid "Debitor account IBAN country code"
 msgstr ""
 
-#: /Users/julien/Sites/subsguru/www/Payments/Gateway/SEPAPaymentGateway.php:267;291
+#: /Users/julien/Sites/subsguru/www/Payments/Gateway/SEPAPaymentGateway.php:278;302
 msgid "Country code should be two characters (example: DE, FR)"
 msgstr ""
 
-#: /Users/julien/Sites/subsguru/www/Payments/Gateway/SEPAPaymentGateway.php:273
+#: /Users/julien/Sites/subsguru/www/Payments/Gateway/SEPAPaymentGateway.php:284
 msgid "Debitor account IBAN key"
 msgstr ""
 
-#: /Users/julien/Sites/subsguru/www/Payments/Gateway/SEPAPaymentGateway.php:281
+#: /Users/julien/Sites/subsguru/www/Payments/Gateway/SEPAPaymentGateway.php:292
 msgid "IBAN key should be a numerical value"
 msgstr ""
 
-#: /Users/julien/Sites/subsguru/www/Payments/Gateway/SEPAPaymentGateway.php:285
+#: /Users/julien/Sites/subsguru/www/Payments/Gateway/SEPAPaymentGateway.php:296
 msgid "IBAN key should be two digits"
 msgstr ""
 
-#: /Users/julien/Sites/subsguru/www/Payments/Gateway/SEPAPaymentGateway.php:297
+#: /Users/julien/Sites/subsguru/www/Payments/Gateway/SEPAPaymentGateway.php:308
 msgid "Debitor account IBAN number"
 msgstr ""
 
-#: /Users/julien/Sites/subsguru/www/Payments/Gateway/SEPAPaymentGateway.php:305
+#: /Users/julien/Sites/subsguru/www/Payments/Gateway/SEPAPaymentGateway.php:316
 msgid "IBAN is not valid"
 msgstr ""
 
-#: /Users/julien/Sites/subsguru/www/Payments/Gateway/SEPAPaymentGateway.php:311
+#: /Users/julien/Sites/subsguru/www/Payments/Gateway/SEPAPaymentGateway.php:322
 msgid "BIC"
 msgstr ""
 
-#: /Users/julien/Sites/subsguru/www/Payments/Gateway/SEPAPaymentGateway.php:324
+#: /Users/julien/Sites/subsguru/www/Payments/Gateway/SEPAPaymentGateway.php:335
 msgid "Mandate ID"
 msgstr ""
 
-#: /Users/julien/Sites/subsguru/www/Payments/Gateway/SEPAPaymentGateway.php:332
+#: /Users/julien/Sites/subsguru/www/Payments/Gateway/SEPAPaymentGateway.php:343
 msgid "Mandate signature date"
 msgstr ""
 
-#: /Users/julien/Sites/subsguru/www/tmp/cache/twigView-i18n-extract/dd/ddb9dbda6b3a6a46bd4021bd66d9dd1ff60fd7cf5ae5a200c400847e1f12fecb.php:26
+#: /Users/julien/Sites/subsguru/www/tmp/cache/twigView-i18n-extract/8c/8c3c3ac11ef52c74bf4aa3dd3d3dba7534c95433d5b3b87417dfd5962e8c8d6d.php:26
 msgid "SEPA payments export"
 msgstr ""
 
-#: /Users/julien/Sites/subsguru/www/tmp/cache/twigView-i18n-extract/dd/ddb9dbda6b3a6a46bd4021bd66d9dd1ff60fd7cf5ae5a200c400847e1f12fecb.php:30;39
+#: /Users/julien/Sites/subsguru/www/tmp/cache/twigView-i18n-extract/8c/8c3c3ac11ef52c74bf4aa3dd3d3dba7534c95433d5b3b87417dfd5962e8c8d6d.php:30;39
 msgid "Exporting SEPA payments"
 msgstr ""
 
-#: /Users/julien/Sites/subsguru/www/tmp/cache/twigView-i18n-extract/dd/ddb9dbda6b3a6a46bd4021bd66d9dd1ff60fd7cf5ae5a200c400847e1f12fecb.php:35
+#: /Users/julien/Sites/subsguru/www/tmp/cache/twigView-i18n-extract/8c/8c3c3ac11ef52c74bf4aa3dd3d3dba7534c95433d5b3b87417dfd5962e8c8d6d.php:35
 msgid "Payments"
 msgstr ""
 
-#: /Users/julien/Sites/subsguru/www/tmp/cache/twigView-i18n-extract/dd/ddb9dbda6b3a6a46bd4021bd66d9dd1ff60fd7cf5ae5a200c400847e1f12fecb.php:74
+#: /Users/julien/Sites/subsguru/www/tmp/cache/twigView-i18n-extract/8c/8c3c3ac11ef52c74bf4aa3dd3d3dba7534c95433d5b3b87417dfd5962e8c8d6d.php:74
 msgid "{0} payments are ignored in your selection because they are not SEPA payments"
 msgstr ""
 
-#: /Users/julien/Sites/subsguru/www/tmp/cache/twigView-i18n-extract/dd/ddb9dbda6b3a6a46bd4021bd66d9dd1ff60fd7cf5ae5a200c400847e1f12fecb.php:101
+#: /Users/julien/Sites/subsguru/www/tmp/cache/twigView-i18n-extract/8c/8c3c3ac11ef52c74bf4aa3dd3d3dba7534c95433d5b3b87417dfd5962e8c8d6d.php:91
+msgid "Go back"
+msgstr ""
+
+#: /Users/julien/Sites/subsguru/www/tmp/cache/twigView-i18n-extract/8c/8c3c3ac11ef52c74bf4aa3dd3d3dba7534c95433d5b3b87417dfd5962e8c8d6d.php:101
 msgid "You have selected {0} SEPA payment{1}"
 msgstr ""
 
-#: /Users/julien/Sites/subsguru/www/tmp/cache/twigView-i18n-extract/dd/ddb9dbda6b3a6a46bd4021bd66d9dd1ff60fd7cf5ae5a200c400847e1f12fecb.php:106
+#: /Users/julien/Sites/subsguru/www/tmp/cache/twigView-i18n-extract/8c/8c3c3ac11ef52c74bf4aa3dd3d3dba7534c95433d5b3b87417dfd5962e8c8d6d.php:106
 msgid "Please check export types in the list then proceed to your export"
 msgstr ""
 
-#: /Users/julien/Sites/subsguru/www/tmp/cache/twigView-i18n-extract/dd/ddb9dbda6b3a6a46bd4021bd66d9dd1ff60fd7cf5ae5a200c400847e1f12fecb.php:110
+#: /Users/julien/Sites/subsguru/www/tmp/cache/twigView-i18n-extract/8c/8c3c3ac11ef52c74bf4aa3dd3d3dba7534c95433d5b3b87417dfd5962e8c8d6d.php:110
 msgid "Exported file will contains all payments listed below"
 msgstr ""
 
-#: /Users/julien/Sites/subsguru/www/tmp/cache/twigView-i18n-extract/dd/ddb9dbda6b3a6a46bd4021bd66d9dd1ff60fd7cf5ae5a200c400847e1f12fecb.php:135
+#: /Users/julien/Sites/subsguru/www/tmp/cache/twigView-i18n-extract/8c/8c3c3ac11ef52c74bf4aa3dd3d3dba7534c95433d5b3b87417dfd5962e8c8d6d.php:135
 msgid "Customer"
 msgstr ""
 
-#: /Users/julien/Sites/subsguru/www/tmp/cache/twigView-i18n-extract/dd/ddb9dbda6b3a6a46bd4021bd66d9dd1ff60fd7cf5ae5a200c400847e1f12fecb.php:139
+#: /Users/julien/Sites/subsguru/www/tmp/cache/twigView-i18n-extract/8c/8c3c3ac11ef52c74bf4aa3dd3d3dba7534c95433d5b3b87417dfd5962e8c8d6d.php:139
 msgid "Invoice"
 msgstr ""
 
-#: /Users/julien/Sites/subsguru/www/tmp/cache/twigView-i18n-extract/dd/ddb9dbda6b3a6a46bd4021bd66d9dd1ff60fd7cf5ae5a200c400847e1f12fecb.php:143
+#: /Users/julien/Sites/subsguru/www/tmp/cache/twigView-i18n-extract/8c/8c3c3ac11ef52c74bf4aa3dd3d3dba7534c95433d5b3b87417dfd5962e8c8d6d.php:143
 msgid "Amount"
 msgstr ""
 
-#: /Users/julien/Sites/subsguru/www/tmp/cache/twigView-i18n-extract/dd/ddb9dbda6b3a6a46bd4021bd66d9dd1ff60fd7cf5ae5a200c400847e1f12fecb.php:147
+#: /Users/julien/Sites/subsguru/www/tmp/cache/twigView-i18n-extract/8c/8c3c3ac11ef52c74bf4aa3dd3d3dba7534c95433d5b3b87417dfd5962e8c8d6d.php:147
 msgid "First"
 msgstr ""
 
-#: /Users/julien/Sites/subsguru/www/tmp/cache/twigView-i18n-extract/dd/ddb9dbda6b3a6a46bd4021bd66d9dd1ff60fd7cf5ae5a200c400847e1f12fecb.php:151
+#: /Users/julien/Sites/subsguru/www/tmp/cache/twigView-i18n-extract/8c/8c3c3ac11ef52c74bf4aa3dd3d3dba7534c95433d5b3b87417dfd5962e8c8d6d.php:151
 msgid "Export type"
 msgstr ""
 
-#: /Users/julien/Sites/subsguru/www/tmp/cache/twigView-i18n-extract/dd/ddb9dbda6b3a6a46bd4021bd66d9dd1ff60fd7cf5ae5a200c400847e1f12fecb.php:155
+#: /Users/julien/Sites/subsguru/www/tmp/cache/twigView-i18n-extract/8c/8c3c3ac11ef52c74bf4aa3dd3d3dba7534c95433d5b3b87417dfd5962e8c8d6d.php:155
 msgid "Payment status"
 msgstr ""
 
-#: /Users/julien/Sites/subsguru/www/tmp/cache/twigView-i18n-extract/dd/ddb9dbda6b3a6a46bd4021bd66d9dd1ff60fd7cf5ae5a200c400847e1f12fecb.php:268
+#: /Users/julien/Sites/subsguru/www/tmp/cache/twigView-i18n-extract/8c/8c3c3ac11ef52c74bf4aa3dd3d3dba7534c95433d5b3b87417dfd5962e8c8d6d.php:268
 msgid "Ready"
 msgstr ""
 
-#: /Users/julien/Sites/subsguru/www/tmp/cache/twigView-i18n-extract/dd/ddb9dbda6b3a6a46bd4021bd66d9dd1ff60fd7cf5ae5a200c400847e1f12fecb.php:277
+#: /Users/julien/Sites/subsguru/www/tmp/cache/twigView-i18n-extract/8c/8c3c3ac11ef52c74bf4aa3dd3d3dba7534c95433d5b3b87417dfd5962e8c8d6d.php:277
 msgid "Exported on {0}"
 msgstr ""
 
-#: /Users/julien/Sites/subsguru/www/tmp/cache/twigView-i18n-extract/dd/ddb9dbda6b3a6a46bd4021bd66d9dd1ff60fd7cf5ae5a200c400847e1f12fecb.php:281
+#: /Users/julien/Sites/subsguru/www/tmp/cache/twigView-i18n-extract/8c/8c3c3ac11ef52c74bf4aa3dd3d3dba7534c95433d5b3b87417dfd5962e8c8d6d.php:281
 msgid "Already exported !"
 msgstr ""
 
-#: /Users/julien/Sites/subsguru/www/tmp/cache/twigView-i18n-extract/dd/ddb9dbda6b3a6a46bd4021bd66d9dd1ff60fd7cf5ae5a200c400847e1f12fecb.php:290
+#: /Users/julien/Sites/subsguru/www/tmp/cache/twigView-i18n-extract/8c/8c3c3ac11ef52c74bf4aa3dd3d3dba7534c95433d5b3b87417dfd5962e8c8d6d.php:290
 msgid "Will not be exported"
 msgstr ""
 
-#: /Users/julien/Sites/subsguru/www/tmp/cache/twigView-i18n-extract/dd/ddb9dbda6b3a6a46bd4021bd66d9dd1ff60fd7cf5ae5a200c400847e1f12fecb.php:313
+#: /Users/julien/Sites/subsguru/www/tmp/cache/twigView-i18n-extract/8c/8c3c3ac11ef52c74bf4aa3dd3d3dba7534c95433d5b3b87417dfd5962e8c8d6d.php:313
 msgid "Export all"
 msgstr ""
 
-#: /Users/julien/Sites/subsguru/www/tmp/cache/twigView-i18n-extract/dd/ddb9dbda6b3a6a46bd4021bd66d9dd1ff60fd7cf5ae5a200c400847e1f12fecb.php:320
+#: /Users/julien/Sites/subsguru/www/tmp/cache/twigView-i18n-extract/8c/8c3c3ac11ef52c74bf4aa3dd3d3dba7534c95433d5b3b87417dfd5962e8c8d6d.php:320
 msgid "Toggle Dropdown"
 msgstr ""
 
-#: /Users/julien/Sites/subsguru/www/tmp/cache/twigView-i18n-extract/dd/ddb9dbda6b3a6a46bd4021bd66d9dd1ff60fd7cf5ae5a200c400847e1f12fecb.php:326;330
+#: /Users/julien/Sites/subsguru/www/tmp/cache/twigView-i18n-extract/8c/8c3c3ac11ef52c74bf4aa3dd3d3dba7534c95433d5b3b87417dfd5962e8c8d6d.php:326;330
 msgid "Export {0} only"
+msgstr ""
+
+#: /Users/julien/Sites/subsguru/www/tmp/cache/twigView-i18n-extract/8c/8c3c3ac11ef52c74bf4aa3dd3d3dba7534c95433d5b3b87417dfd5962e8c8d6d.php:326;330
+msgid "Levy notification for your subscription to {0}"
 msgstr ""
 
