@@ -1,10 +1,10 @@
 <?php
 namespace SubsGuru\SEPA\Mailer;
 
-use App\Mailer\PaymentsNotificationsMailer;
-use App\Model\Entity\Payment;
-use App\Model\Entity\PaymentMean;
-use App\Util\Localize;
+use SubsGuru\Core\Mailer\PaymentsNotificationsMailer;
+use SubsGuru\Core\Model\Entity\Payment;
+use SubsGuru\Core\Model\Entity\PaymentMean;
+use SubsGuru\Core\Util\Localize;
 use Cake\Core\Configure;
 
 class SEPANotificationsMailer extends PaymentsNotificationsMailer
@@ -13,8 +13,8 @@ class SEPANotificationsMailer extends PaymentsNotificationsMailer
     /**
      * Message sent when a payment hits the "error" status
      *
-     * @param \App\Model\Entity\PaymentMean $paymentMean Instance of the payment mean the payment was made with.
-     * @param \App\Model\Entity\Payment $payment Instance of the payment we are notifying about.
+     * @param \SubsGuru\Core\Model\Entity\PaymentMean $paymentMean Instance of the payment mean the payment was made with.
+     * @param \SubsGuru\Core\Model\Entity\Payment $payment Instance of the payment we are notifying about.
      * @return void
      */
     public function exported(PaymentMean $paymentMean, Payment $payment)
@@ -37,8 +37,8 @@ class SEPANotificationsMailer extends PaymentsNotificationsMailer
      * No-op : we do not notify the customer when the payment reach the success status : he / she already has been notified using
      * the exported status.
      *
-     * @param \App\Model\Entity\PaymentMean $paymentMean Instance of the payment mean the payment was made with.
-     * @param \App\Model\Entity\Payment $payment Instance of the payment we are notifying about.
+     * @param \SubsGuru\Core\Model\Entity\PaymentMean $paymentMean Instance of the payment mean the payment was made with.
+     * @param \SubsGuru\Core\Model\Entity\Payment $payment Instance of the payment we are notifying about.
      * @return void
      */
     public function success(PaymentMean $paymentMean, Payment $payment)

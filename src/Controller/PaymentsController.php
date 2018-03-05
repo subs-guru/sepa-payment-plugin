@@ -324,7 +324,7 @@ class PaymentsController extends AbstractPaymentGatewayController
     /**
      * Automaticly detect SEPA export type for passed payment.
      *
-     * @param  App\Model\Entity\Payment $payment Payment to detect type on
+     * @param  SubsGuru\Core\Model\Entity\Payment $payment Payment to detect type on
      * @param  array $paymentsCounters Payment counters list
      * @return string SEPA export type
      */

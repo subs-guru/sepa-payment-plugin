@@ -5,7 +5,7 @@
         $invoicesList = $paymentInvoices->extract(function($invoice) {
             return $invoice->full_number;
         })->toArray();
-        $typeDocument = in_array($paymentInvoices->first()->type, \App\Model\Entity\Invoice::TYPES_CREDIT_NOTES) ? 'Avoir' : 'Facture';
+        $typeDocument = in_array($paymentInvoices->first()->type, \SubsGuru\Core\Model\Entity\Invoice::TYPES_CREDIT_NOTES) ? 'Avoir' : 'Facture';
 
         if ($typeDocument == 'Avoir') {
             $amount = $payment->amount * -1;
@@ -29,7 +29,7 @@ Vous trouverez ci après le détail de votre paiement.
     <?php echo $typeDocument; ?> : <?= \Cake\Utility\Text::toList($invoicesList); ?>
 <?php endif; ?>
 
-Montant : <?= \App\Util\Money::money($amount, $payment->currency); ?>
+Montant : <?= \SubsGuru\Core\Util\Money::money($amount, $payment->currency); ?>
 
 Moyen de paiement : <?= $payment->getPaymentGateway()->getBillingName(); ?>
 
@@ -40,6 +40,6 @@ Motif : <?= nl2br($lastPaymentStatus->payment_mean_infos); ?>
 
 <?php if (!empty($balanceDueInvoices)): ?>
     <?php foreach ($balanceDueInvoices as $invoiceNum => $balanceDue): ?>
-Restant dû <?= $invoiceNum ?> : <?= \App\Util\Money::money($balanceDue, $payment->currency); ?>
+Restant dû <?= $invoiceNum ?> : <?= \SubsGuru\Core\Util\Money::money($balanceDue, $payment->currency); ?>
     <?php endforeach; ?>
 <?php endif; ?>

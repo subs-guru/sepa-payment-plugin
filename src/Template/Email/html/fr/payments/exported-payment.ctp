@@ -5,7 +5,7 @@
         $invoicesList = $paymentInvoices->extract(function($invoice) {
             return $invoice->full_number;
         })->toArray();
-        $typeDocument = in_array($paymentInvoices->first()->type, \App\Model\Entity\Invoice::TYPES_CREDIT_NOTES) ? 'Avoir' : 'Facture';
+        $typeDocument = in_array($paymentInvoices->first()->type, \SubsGuru\Core\Model\Entity\Invoice::TYPES_CREDIT_NOTES) ? 'Avoir' : 'Facture';
 
         if ($typeDocument == 'Avoir') {
             $amount = $payment->amount * -1;
@@ -49,7 +49,7 @@
                                 <?php endif; ?>
                                 <tr style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
                                     <td style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; border-top-width: 1px; border-top-color: #eee; border-top-style: solid; margin: 0; padding: 5px 0;" valign="top">Montant</td>
-                                    <td class="alignright" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; text-align: right; border-top-width: 1px; border-top-color: #eee; border-top-style: solid; margin: 0; padding: 5px 0;" align="right" valign="top"><?= \App\Util\Money::money($amount, $payment->currency); ?></td>
+                                    <td class="alignright" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; text-align: right; border-top-width: 1px; border-top-color: #eee; border-top-style: solid; margin: 0; padding: 5px 0;" align="right" valign="top"><?= \SubsGuru\Core\Util\Money::money($amount, $payment->currency); ?></td>
                                 </tr>
                                 <tr style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
                                     <td style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; border-top-width: 1px; border-top-color: #eee; border-top-style: solid; margin: 0; padding: 5px 0;" valign="top">Moyen de paiement</td>
@@ -70,7 +70,7 @@
                                     <?php foreach ($balanceDueInvoices as $invoiceNum => $balanceDue): ?>
                                         <tr style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
                                             <td style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; border-top-width: 1px; border-top-color: #eee; border-top-style: solid; margin: 0; padding: 5px 0;" valign="top">Restant dû <?= $invoiceNum ?></td>
-                                            <td class="alignright" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; text-align: right; border-top-width: 1px; border-top-color: #eee; border-top-style: solid; margin: 0; padding: 5px 0;" align="right" valign="top"><?= \App\Util\Money::money($balanceDue, $payment->currency); ?></td>
+                                            <td class="alignright" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; text-align: right; border-top-width: 1px; border-top-color: #eee; border-top-style: solid; margin: 0; padding: 5px 0;" align="right" valign="top"><?= \SubsGuru\Core\Util\Money::money($balanceDue, $payment->currency); ?></td>
                                         </tr>
                                     <?php endforeach; ?>
                                 <?php endif; ?>
