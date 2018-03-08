@@ -4,6 +4,7 @@ namespace SubsGuru\SEPA\Payments\Gateway;
 use App\Model\Entity\Payment;
 use App\Model\Entity\PaymentMean;
 use App\Model\Entity\PaymentMeanConfig;
+use App\Model\Entity\PaymentStatus;
 use App\Payments\AbstractPaymentGateway;
 use Cake\Routing\Router;
 use Digitick\Sepa\PaymentInformation;
@@ -114,7 +115,7 @@ class SEPAPaymentGateway extends AbstractPaymentGateway
             $actions['export']['disabled'] = true;
         }
 
-        if (!$payment->hasStatus(static::STATUS_EXPORTED) && !$payment->hasStatus(static::STATUS_NEEDS_MANUAL_VALIDATION)) {
+        if (!$payment->hasStatus(static::STATUS_EXPORTED) && !$payment->hasStatus(PaymentStatus::STATUS_NEEDS_MANUAL_VALIDATION)) {
             $actions['paid']['disabled'] = true;
         }
 
