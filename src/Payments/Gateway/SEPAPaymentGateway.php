@@ -114,7 +114,7 @@ class SEPAPaymentGateway extends AbstractPaymentGateway
             $actions['export']['disabled'] = true;
         }
 
-        if (!$payment->hasStatus(static::STATUS_EXPORTED)) {
+        if (!$payment->hasStatus(static::STATUS_EXPORTED) && !$payment->hasStatus(PaymentStatus::STATUS_NEEDS_MANUAL_VALIDATION)) {
             $actions['paid']['disabled'] = true;
         }
 
