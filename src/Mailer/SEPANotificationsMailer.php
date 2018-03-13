@@ -28,8 +28,9 @@ class SEPANotificationsMailer extends PaymentsNotificationsMailer
 
         if ($payment->getAmount() > 0) {
             $this
-                ->template('SubsGuru/SEPA.' . $language . '/payments/exported-payment', 'SubsGuru/SEPA.' . $language . '/default')
-                ->subject(__d('SubsGuru/SEPA', 'Levy notification for your subscription to {0}', Configure::read(CONFIG_KEY . '.service.name')));
+                ->setTemplate('SubsGuru/SEPA.' . $language . '/payments/exported-payment')
+                ->setLayout('SubsGuru/SEPA.' . $language . '/default')
+                ->setSubject(__d('SubsGuru/SEPA', 'Levy notification for your subscription to {0}', Configure::read(CONFIG_KEY . '.service.name')));
         }
     }
 
