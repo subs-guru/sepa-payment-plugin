@@ -1,11 +1,11 @@
-{% import "../Macros/payments.twig" as paymentsMacros %}
-{% import "../Macros/invoices.twig" as invoicesMacros %}
+{% import "SubsGuru/Core.Macros/payments.twig" as paymentsMacros %}
+{% import "SubsGuru/Core.Macros/invoices.twig" as invoicesMacros %}
 
 {{ _view.assign('title', __d('SubsGuru/SEPA', 'SEPA payments export')) }}
 {{ _view.assign('page-title', __d('SubsGuru/SEPA', 'Exporting SEPA payments')) }}
 
-{{ Html.addCrumb(__d('SubsGuru/SEPA', 'Payments'), referer) }}
-{{ Html.addCrumb(__d('SubsGuru/SEPA', 'Exporting SEPA payments')) }}
+{% do Breadcrumbs.add(__d('SubsGuru/SEPA', 'Payments'), referer) %}
+{% do Breadcrumbs.add(__d('SubsGuru/SEPA', 'Exporting SEPA payments')) %}
 
 {{ Html.css('export.css', { block: true })|raw }}
 {{ Html.css('export.css', { block: true })|raw }}
