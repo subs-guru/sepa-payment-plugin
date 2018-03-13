@@ -33,13 +33,12 @@ class SepaPaymentPlugin extends BasePlugin
     {
         parent::routes($routes);
 
-        Router::plugin(
+        $routes->plugin(
             'SubsGuru/SEPA',
             ['path' => '/sepa'],
             function (RouteBuilder $routes) {
                 $routes->fallbacks(DashedRoute::class);
             }
         );
-
     }
 }
