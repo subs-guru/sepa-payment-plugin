@@ -16,7 +16,7 @@ class PaymentsController extends AbstractPaymentGatewayController
     /**
      * Export form.
      *
-     * @return Cake\Network\Response
+     * @return \Cake\Http\Response
      */
     public function export()
     {
@@ -29,7 +29,7 @@ class PaymentsController extends AbstractPaymentGatewayController
         $filtered->where(['PaymentMeans.type' => $this->getPaymentGateway()->getName()]);
 
         // Handling POST
-        if ($this->request->is('post')) {
+        if ($this->getRequest()->is('post')) {
             return $this->doExport($filtered);
         }
 
@@ -45,6 +45,8 @@ class PaymentsController extends AbstractPaymentGatewayController
         $this->set('paymentsCounters', $paymentsCounters);
         $this->set('debits', $debitsTypes);
         $this->set('debitsTypes', array_flip($debitsTypes));
+
+        $this->viewBuilder()->setLayout('SubsGuru/Core.default');
     }
 
     public function setAsRejected()
@@ -65,7 +67,7 @@ class PaymentsController extends AbstractPaymentGatewayController
         foreach ($filtered as $payment) {
             if ($gateway->canPaymentDo($payment, $this->getCurrentActionName())) {
                 if ($payment->updateStatus($gateway->getErrorStatus(), __d('SubsGuru/SEPA', "Rejected by bank"), ['rejected_by_bank' => 1], true)) {
-                    TableRegistry::get('Payments')->save($payment);
+                    TableRegistry::get('SubsGuru/Core.Payments')->save($payment);
                 } else {
                     $errorCount++;
                 }
@@ -76,7 +78,7 @@ class PaymentsController extends AbstractPaymentGatewayController
             ($filteredCount - $errorCount <= 1)
                 ? __d('SubsGuru/SEPA', "{0} updated payment", $filteredCount)
                 : __d('SubsGuru/SEPA', "{0} updated payments", $filteredCount)
-        );
+            , ['plugin' => 'SubsGuru/Core']);
 
         $this->clearSelection();
 
@@ -86,8 +88,8 @@ class PaymentsController extends AbstractPaymentGatewayController
     /**
      * Export processing (POST ONLY).
      *
-     * @param  Cake\ORM\Query $payments Payments query
-     * @return Cake\Network\Response
+     * @param  \Cake\ORM\Query $payments Payments query
+     * @return \Cake\Http\Response
      */
     protected function doExport($payments)
     {
@@ -102,13 +104,15 @@ class PaymentsController extends AbstractPaymentGatewayController
             $paymentName = $shortId;
             $paymentStatus = $payment->getCurrentStatus()->name;
 
-            if (!isset($this->request->data['type-' . $payment->id]) || !in_array($paymentStatus, [SEPAPaymentGateway::STATUS_READY, SEPAPaymentGateway::STATUS_EXPORTED])) {
+            if (!$this->getRequest()->getData('type-' . $payment->id)
+                || !in_array($paymentStatus, [SEPAPaymentGateway::STATUS_READY, SEPAPaymentGateway::STATUS_EXPORTED])
+            ) {
                 $payment->__ignore = true;
                 continue;
             }
 
             $payment->__ignore = false;
-            $type = strtoupper($this->request->data['type-' . $payment->id]);
+            $type = strtoupper($this->getRequest()->getData('type-' . $payment->id));
             $parameters = $payment->payment_mean->getParameters();
 
             $iban = iban_to_machine_format($parameters['iban_country'] . $parameters['iban_key'] . $parameters['iban_code']);
@@ -180,7 +184,7 @@ class PaymentsController extends AbstractPaymentGatewayController
                     $errorsHTML .= " - " . trim($error->message) . "\n";
                 }
 
-                $this->Flash->error(nl2br(__d('SubsGuru/SEPA', "<strong>XML validation error</strong>\n<small>{0}</small>", trim($errorsHTML))));
+                $this->Flash->error(nl2br(__d('SubsGuru/SEPA', "<strong>XML validation error</strong>\n<small>{0}</small>", trim($errorsHTML))), ['plugin' => 'SubsGuru/Core']);
 
                 return $this->redirect($this->referer());
             } else {
@@ -189,27 +193,22 @@ class PaymentsController extends AbstractPaymentGatewayController
         }
 
         // Exporting file for only one type OR group them into a ZIP file.
-        if (!empty($this->request->data['type'])) {
+        if (!empty($this->getRequest()->getData('type'))) {
             // Creating XML file
-            $type = $this->request->data['type'];
-            $file = SEPA_XML_FOLDER . '/sepa-exports-' . strtoupper($this->request->data['type']) . '-' . date('Y-m-d-H\hh') . '.xml';
+            $type = $this->getRequest()->getData('type');
+            $file = SEPA_XML_FOLDER . '/sepa-exports-' . strtoupper($this->getRequest()->getData('type')) . '-' . date('Y-m-d-H\hh') . '.xml';
 
             $this->createTempDir($file);
 
             if (!isset($sepaXml[$type])) {
-                $this->Flash->warning(__d('SubsGuru/SEPA', "No document matched selected type ({0}), nothing to export.", $type));
+                $this->Flash->warning(__d('SubsGuru/SEPA', "No document matched selected type ({0}), nothing to export.", $type), ['plugin' => 'SubsGuru/Core']);
                 return $this->redirect($this->referer());
             }
 
             file_put_contents($file, $sepaXml[$type]);
-
-            // HTTP response to download file
-            $this->response->header('Content-Type', 'text/xml');
-            $this->response->header('Content-Length', filesize($file));
-            $this->response->header('Content-Disposition', 'attachment; filename="' . basename($file) . '"');
         } else {
             if (empty($sepaXml)) {
-                $this->Flash->warning(__d('SubsGuru/SEPA', "Nothing to export."));
+                $this->Flash->warning(__d('SubsGuru/SEPA', "Nothing to export."), ['plugin' => 'SubsGuru/Core']);
                 return $this->redirect($this->referer());
             }
 
@@ -229,36 +228,27 @@ class PaymentsController extends AbstractPaymentGatewayController
             }
 
             $zip->close();
-
-            // HTTP response to download file
-            $this->response->header('Content-Type', 'application/zip');
-            $this->response->header('Content-Length', filesize($file));
-            $this->response->header('Content-Disposition', 'attachment; filename="' . basename($file) . '"');
         }
 
         $this->clearSelection();
 
-        // Streaming file
-        $this->response->body(function () use ($file, $payments) {
-            readfile($file);
-            unlink($file);
+        $this->setResponse($this->getResponse()->withFile($file, ['download' => true, 'name' => pathinfo($file, PATHINFO_BASENAME)]));
 
-            foreach ($payments as $payment) {
-                if ($payment->__ignore === true) {
-                    continue;
-                }
-
-                $payment->updateStatus(
-                    SEPAPaymentGateway::STATUS_EXPORTED,
-                    __d('SubsGuru/SEPA', "Exported into file `{0}`", basename($file)),
-                    ['filename' => basename($file)]
-                );
-
-                TableRegistry::get('Payments')->save($payment);
+        foreach ($payments as $payment) {
+            if ($payment->__ignore === true) {
+                continue;
             }
-        });
 
-        return $this->response;
+            $payment->updateStatus(
+                SEPAPaymentGateway::STATUS_EXPORTED,
+                __d('SubsGuru/SEPA', "Exported into file `{0}`", basename($file)),
+                ['filename' => basename($file)]
+            );
+
+            TableRegistry::get('SubsGuru/Core.Payments')->save($payment);
+        }
+
+        return $this->getResponse();
     }
 
     /**
@@ -305,7 +295,7 @@ class PaymentsController extends AbstractPaymentGatewayController
             }
         }
 
-        $paymentsCounters = TableRegistry::get('PaymentMeans')->find('list', [
+        $paymentsCounters = TableRegistry::get('SubsGuru/Core.PaymentMeans')->find('list', [
             'keyField' => 'id',
             'valueField' => 'count'
         ]);
@@ -316,7 +306,7 @@ class PaymentsController extends AbstractPaymentGatewayController
             'PaymentStatuses.name =' => $this->getPaymentGateway()->getSuccessStatus()
         ]);
         $paymentsCounters->group('PaymentMeans.id');
-        $paymentsCounters->autoFields(true);
+        $paymentsCounters->enableAutoFields(true);
 
         return $paymentsCounters->toArray();
     }
