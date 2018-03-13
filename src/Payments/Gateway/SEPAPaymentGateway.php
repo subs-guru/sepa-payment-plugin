@@ -6,6 +6,7 @@ use Digitick\Sepa\PaymentInformation;
 use SubsGuru\Core\Model\Entity\Payment;
 use SubsGuru\Core\Model\Entity\PaymentMean;
 use SubsGuru\Core\Model\Entity\PaymentMeanConfig;
+use SubsGuru\Core\Model\Entity\PaymentStatus;
 use SubsGuru\Core\Payments\AbstractPaymentGateway;
 
 defined('SEPA_XML_FOLDER') ?: define('SEPA_XML_FOLDER', ROOT . '/tmp/sepa');
